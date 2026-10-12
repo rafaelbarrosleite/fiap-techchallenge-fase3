@@ -426,6 +426,7 @@ dependencies = [
 
 [package.dev-dependencies]
 dev = [
+    { name = "markdown" },
     { name = "pytest" },
 ]
 
@@ -449,7 +450,10 @@ requires-dist = [
 ]
 
 [package.metadata.requires-dev]
-dev = [{ name = "pytest", specifier = "==9.1.1" }]
+dev = [
+    { name = "markdown", specifier = "==3.11" },
+    { name = "pytest", specifier = "==9.1.1" },
+]
 
 [[package]]
 name = "filelock"
@@ -986,6 +990,15 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/9a/35/f968ed0b680cf648ace576b16d2e3a25e8d4853a1ad694d01d091640b621/langsmith-0.14.5.tar.gz", hash = "sha256:ebeb638ea94bf8434b2b12d6970b4f9c4ef481124747d5c6f81bdbd9706fd556", size = 5000262, upload-time = "2026-10-08T22:15:49.788Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/32/80/5c80dcf789c4ca457c7a43364d1180a0ec174fd32874e997c7a34806b1d9/langsmith-0.14.5-py3-none-any.whl", hash = "sha256:f631fccd65f8f57b697ba5cd6550b488a1282ba994e540b3339b1d1affe32996", size = 861901, upload-time = "2026-10-08T22:15:47.368Z" },
+]
+
+[[package]]
+name = "markdown"
+version = "3.11"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/f8/4f/700155c8c20d9e655dd0732b5fc3c7614f291b9148da271d7388e50bf774/markdown-3.11.tar.gz", hash = "sha256:180224db6aed87ba9ce1f2781ebcd5826253de8ff637112090e24b84502bbf9f", size = 485623, upload-time = "2026-09-25T13:46:23.473Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/ec/1e/32971905a7ab47f8b66866ed949fa48b104ba1c4a6fa57794c4f2c4b2cb8/markdown-3.11-py3-none-any.whl", hash = "sha256:cd6c89e7eb308c8b332ed673215a52d208a43f8bacc030b1419376129408719e", size = 111296, upload-time = "2026-09-25T13:46:22.163Z" },
 ]
 
 [[package]]

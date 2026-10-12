@@ -1,94 +1,160 @@
 # Tech Challenge — Fase 3 — Assistente Médico com LLaMA, LangChain e LangGraph
 
-Projeto acadêmico da Pós Tech FIAP (8IADT). Assistente virtual médico que usa uma LLaMA ajustada com LoRA no PubMedQA e em dados sintéticos do hospital, consulta prontuários estruturados via LangChain e coordena fluxos de decisão com LangGraph, sempre com validação humana antes de qualquer prescrição.
+Projeto da Pós Tech FIAP (IA para Devs, 8IADT). Assistente virtual médico de um hospital fictício. Ele usa um **Llama 3.2 3B ajustado com QLoRA** (PubMedQA + dados sintéticos do hospital), consulta **prontuários estruturados** via LangChain e coordena **fluxos de decisão com LangGraph**. O fluxo verifica exames pendentes, emite alertas, sugere condutas citando os protocolos e **para até um médico validar**.
 
-> Uso exclusivamente acadêmico. Não é ferramenta clínica e não substitui avaliação médica.
+> **Uso exclusivamente acadêmico.** Protocolos, pacientes e documentos são fictícios. Não é ferramenta clínica, e toda conduta exige validação do médico responsável.
 
-Estado: **Missões 0–7 concluídas** (dados, fine-tuning, avaliação, prontuário, RAG, LangChain, fluxo LangGraph com validação humana e interface). Pendentes: relatório final e vídeo. Plano completo em [`docs/plano_implementacao.md`](docs/plano_implementacao.md).
+- 📄 **Relatório técnico:** [`docs/relatorio_tecnico.md`](docs/relatorio_tecnico.md) (também em PDF: [`docs/relatorio_tecnico.pdf`](docs/relatorio_tecnico.pdf))
+- 🧭 **Diagrama do fluxo:** [`docs/diagrama_fluxo.md`](docs/diagrama_fluxo.md)
+- ✅ **Requisitos × evidências:** [`docs/matriz_rastreabilidade.md`](docs/matriz_rastreabilidade.md)
+- 🎬 **Vídeo:** _link a incluir_
+
+## Resultados em uma tabela
+
+| | Llama original + RAG | **Llama ajustado + RAG** |
+|---|---:|---:|
+| Fonte inventada (↓) | 20,5% | **2,3%** |
+| Recusa indevida (↓) | 4,8% | **2,4%** |
+| Receita/solicitação gerada como rascunho pendente de validação | 0% | **100%** |
+| Protocolo / seção citados corretos | 78% / 61% | 78% / 61% |
+| PubMedQA, acurácia (500 itens, sem RAG) | 73,0% | 75,6% (McNemar p = 0,07) |
+
+Bateria de segurança do fluxo completo (pedidos fora do treino): **20/21 pedidos adversariais contidos** na versão original das regras e 21/21 após a correção, **0/15 bloqueios indevidos**. O treino ensinou principalmente o *comportamento* do hospital (citar, recusar, pedir validação). O conhecimento vem dos protocolos recuperados, e a segurança é garantida pelos guardrails do grafo. A análise completa está no relatório.
+
+## Arquitetura
+
+```mermaid
+flowchart LR
+    subgraph Dados
+        P[PubMedQA] --> PR[prepare-data<br/>anonimização + curadoria]
+        H[Hospital sintético] --> PR
+    end
+    PR --> FT[QLoRA · MLX] --> M[(Adaptador LoRA)]
+    subgraph Assistente
+        M --> LC[LangChain<br/>ChatModel · tools · retriever]
+        DB[(Prontuário SQLite)] --> LC
+        PROT[(Protocolos)] --> LC
+        LC --> LG[LangGraph<br/>guardrails · alertas · validação humana]
+        LG --> UI[CLI / Streamlit]
+        LG --> LOG[(Auditoria JSONL)]
+    end
+```
 
 ## Instalação
 
-Requisitos: Python 3.11–3.13 e [uv](https://docs.astral.sh/uv/).
+Requisitos:
+- **Python** 3.11 a 3.13 e [uv](https://docs.astral.sh/uv/).
+- **Para rodar o modelo:** Mac com Apple Silicon (MLX), com cerca de 2 GB para o modelo base, baixado automaticamente do Hugging Face sem token.
+- **Para o treino:** 16 GB de RAM.
+- **Sem Mac:** use `--provider fake`, que roda o fluxo inteiro sem o modelo.
 
 ```bash
+git clone git@github.com:rafaelbarrosleite/fiap-techchallenge-fase3.git
+cd fiap-techchallenge-fase3
 uv sync
-cp .env.example .env
-uv run pytest
+uv run pytest            # 85 testes
 ```
 
-## Dados (Missão 1)
+### Adaptador treinado
+
+Para não retreinar (cerca de 3h40), baixe o adaptador da Release `v0.7.0`:
 
 ```bash
-uv run prepare-data
+gh release download v0.7.0 -p "llama32-3b-lora-hospital.tar.gz"
+mkdir -p artifacts/finetune/official && tar -xzf llama32-3b-lora-hospital.tar.gz -C artifacts/finetune/official
 ```
 
-O comando baixa o [PubMedQA](https://huggingface.co/datasets/qiaojin/PubMedQA) (licença MIT, sem token), gera o corpus sintético do hospital, anonimiza, faz a curadoria e grava:
+## Uso
 
-- `data/processed/{train,valid,test}.jsonl`: exemplos com metadados (fonte, tarefa, grupo);
-- `data/processed/mlx/{train,valid,test}.jsonl`: somente `messages`, no formato de chat do MLX-LM;
-- `artifacts/data/data_report.json`: contagens, PII anonimizada, itens removidos e hashes SHA-256.
-
-| Fonte | Uso |
-|---|---|
-| `pqa_artificial` (211 mil, rótulo automático, ~93% "yes") | Amostra balanceada yes/no: 4.000 treino + 200 validação |
-| `pqa_labeled` (1.000, rotulado por especialistas) | 500 teste, 250 validação e 250 treino (estratificado por decisão) |
-| Corpus do hospital (`data/synthetic/`) | 13 protocolos fictícios, FAQ, modelos de laudo/receita/alerta, notas clínicas anonimizadas e exemplos de segurança |
-
-Decisões de dados:
-
-- **Idioma**: o PubMedQA fica em inglês, e o corpus do hospital em português. O assistente responde em português.
-- **Divisão sem vazamento**: variações da mesma pergunta ficam no mesmo split, e há uma checagem de sobreposição entre treino e teste.
-- **Anonimização** ([`anonymize.py`](src/assistente_medico/data/anonymize.py)): usa regras determinísticas para CPF, CNS, RG, telefone, e-mail, CEP, datas, campos rotulados, profissionais e prenomes. As notas clínicas são geradas com dados pessoais falsos (Faker) e passam pelo anonimizador antes de entrar no treino.
-- **Curadoria**: normalização, deduplicação e limite de tamanho. Respostas clínicas sem fonte, prescrições sem marca de validação e qualquer PII residual são descartadas.
-
-Os protocolos são fictícios, inspirados em diretrizes públicas, e servem só para fins acadêmicos.
-
-## Fine-tuning (Missão 2)
+### 1. Prontuário de demonstração
 
 ```bash
-uv run finetune --smoke      # 30 iterações para validar memória e velocidade
-uv run finetune --run-name official
-```
-
-QLoRA (rank 16, 16 camadas) sobre `mlx-community/Llama-3.2-3B-Instruct-4bit` com MLX-LM em um MacBook M4 de 16 GB: 1.000 iterações em 3 h 43 min, loss de validação de 2,97 para 1,58. Os artefatos ficam em `artifacts/finetune/official/`: `metrics.jsonl`, `loss_curve.png`, `manifest.json` e os adaptadores.
-
-## Avaliação (Missão 3)
-
-```bash
-uv run evaluate-model --label base
-uv run evaluate-model --label finetuned --adapter artifacts/finetune/official/adapters
-uv run evaluate-model --label finetuned_rag --rag --adapter artifacts/finetune/official/adapters
-uv run evaluate-model --compare base finetuned base_rag finetuned_rag
-```
-
-Resultados em `artifacts/evaluation/`. O PubMedQA subiu de 73,0% para 75,6% (McNemar p = 0,07, não significativo). No hospital, com RAG, o modelo ajustado reduz fonte inventada de 21% para 2% e passa a gerar 100% das receitas como rascunho pendente de validação.
-
-## Assistente e fluxo LangGraph (Missões 4–6)
-
-```bash
-uv run build-hospital-db                                   # prontuário sintético pseudonimizado
+uv run build-hospital-db              # 30 pacientes pseudonimizados, horários relativos a agora
 uv run assistente --listar-pacientes
+```
+
+### 2. Assistente na linha de comando
+
+```bash
 uv run assistente "Qual a meta porta-balão no infarto com supra?"
 uv run assistente "Esta paciente pode iniciar insulina agora?" --paciente P004
-uv run assistente --caso P001                              # alertas + sugestão + validação humana
-uv run assistente --validar <trace_id> --aprovar --medico MED-07
-uv run evaluate-safety --provider mlx                      # bateria adversarial
+uv run assistente --caso P001                                   # alertas + sugestão + validação humana
+uv run assistente --validar <trace_id> --aprovar --medico MED-07   # concluir uma validação pendente
 ```
 
-Use `--provider fake` para rodar sem GPU. O diagrama e as decisões do fluxo estão em [`docs/diagrama_fluxo.md`](docs/diagrama_fluxo.md). Cada caso deixa a trilha completa em `logs/audit.jsonl`: nós percorridos, decisões dos guardrails, resposta do modelo e médico validador, todos com o mesmo `trace_id`.
+`--provider mlx` (padrão) usa o Llama ajustado, `mlx-base` usa o original e `fake` roda sem GPU.
 
-## Interface de demonstração (Missão 7)
+### 3. Interface
 
 ```bash
 uv run streamlit run src/assistente_medico/app/ui.py
 ```
 
 Abas:
+- **Pergunta clínica:** pergunta com ou sem paciente.
+- **Fluxo do paciente:** alertas, sugestão e validação.
+- **Painel:** alertas e prescrições gravados no prontuário.
+- **Auditoria:** eventos de cada `trace_id`.
+- **Modelo e avaliação:** curva de loss, comparativos e bateria de segurança.
 
-- **Pergunta clínica**: pergunta com ou sem paciente, com resposta, fontes, guardrail e caminho no grafo;
-- **Fluxo do paciente**: alertas, sugestão de conduta e formulário de validação humana;
-- **Painel**: alertas e prescrições gravados no prontuário;
-- **Auditoria**: eventos de cada `trace_id`;
-- **Modelo e avaliação**: curva de loss, comparativos e bateria de segurança.
+O botão "Reiniciar prontuário de demonstração" recria o banco.
 
-A barra lateral escolhe o modelo (ajustado, original ou fake) e recria o prontuário de demonstração, com horários relativos ao momento atual. A interface usa o mesmo checkpointer da CLI: uma validação iniciada em uma pode ser concluída na outra.
+## Pipeline completo
+
+| Etapa | Comando | Saída |
+|---|---|---|
+| Dados | `uv run prepare-data` | `data/processed/`, `artifacts/data/data_report.json` |
+| Fine-tuning | `uv run finetune --smoke` e `uv run finetune --run-name official` | `artifacts/finetune/<run>/` (métricas, curva, manifesto, adaptadores) |
+| Avaliação do modelo | `uv run evaluate-model --label base` · `--label finetuned --adapter …` · `--rag` · `--compare …` | `artifacts/evaluation/` |
+| Segurança | `uv run evaluate-safety --provider mlx` | `artifacts/evaluation/safety/` |
+
+### Dados
+
+- **PubMedQA** (`qiaojin/PubMedQA`, licença MIT):
+  - 4.000 itens do `pqa_artificial`, balanceados yes/no, para treino;
+  - o `pqa_labeled` (rotulado por especialistas) dividido em 500 de teste, 250 de validação e 250 de treino.
+- **Hospital sintético** (`data/synthetic/`):
+  - 13 protocolos com seções citáveis;
+  - FAQ;
+  - modelos de receita, solicitação, laudo, alerta e procedimento;
+  - exemplos de segurança;
+  - notas clínicas com dados pessoais falsos, anonimizadas no pipeline.
+- **Curadoria:** normalização e deduplicação; descarta resposta sem fonte, receita sem validação e PII residual. Os splits são feitos por grupo, para não haver vazamento.
+
+### Fine-tuning
+
+- **Modelo:** QLoRA (rank 16, 16 camadas, loss só na resposta) sobre `mlx-community/Llama-3.2-3B-Instruct-4bit`.
+- **Hardware e duração:** MacBook M4 de 16 GB, 1.000 iterações em 3 h 43 min, pico de 6,2 GB.
+- **Resultado:** loss de validação de **2,97 para 1,58**.
+
+## Segurança, auditoria e explicabilidade
+
+- **Guardrail de entrada:** recusa, sem chamar o modelo, pedidos de prescrição sem validação, para ignorar regras, de dose letal, de dados pessoais, para ocultar registros e de orientação direta a pacientes.
+- **Validação humana:** toda conduta ou prescrição vira rascunho `PENDENTE_VALIDACAO`, e o grafo para com `interrupt()` até um médico identificado aprovar ou rejeitar. O estado fica salvo em `data/checkpoints.sqlite`.
+- **Guardrail de saída:** só aceita citações existentes e recuperadas. Com citação divergente, descarta a resposta gerada e mostra os trechos do protocolo; também remove dados pessoais.
+- **Auditoria:** `logs/audit.jsonl` registra cada nó, decisão, resposta do modelo e validação humana, com `trace_id`. O logger recusa campos de identificação.
+
+## Estrutura
+
+```text
+configs/                 data.yaml, finetune.yaml
+data/synthetic/          protocolos, modelos de documentos, segurança, bateria de avaliação
+docs/                    relatório, diagrama, matriz, plano, roteiro do vídeo, PDF do enunciado
+src/assistente_medico/
+  data/                  PubMedQA, corpus do hospital, anonimização, curadoria, splits
+  finetune/              treino MLX com métricas e manifesto
+  llm/                   prompts, ChatModels (MLX e fake), chain do assistente
+  db/                    schema, seed, repositório (regras PRT-012), tools LangChain
+  rag/                   retriever BM25 por seção
+  safety/                guardrails de entrada e saída
+  graph/                 fluxo LangGraph
+  audit/                 log de auditoria
+  evaluation/            métricas, avaliação base × ajustado, bateria de segurança
+  app/                   CLI e Streamlit
+tests/                   85 testes
+artifacts/               relatório de dados, treino, avaliações
+```
+
+## Limitações
+
+Dados sintéticos sem revisão médica, testes pequenos (44 itens do hospital, 36 da bateria), classe "maybe" não aprendida, busca léxica (BM25) e repetições ocasionais do modelo de 3B. Os detalhes estão no relatório, §8.

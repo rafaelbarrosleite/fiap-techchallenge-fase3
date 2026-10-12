@@ -43,5 +43,6 @@ testpaths = ["tests"]
 
 [dependency-groups]
 dev = [
+    "markdown==3.11",
     "pytest==9.1.1",
 ]
