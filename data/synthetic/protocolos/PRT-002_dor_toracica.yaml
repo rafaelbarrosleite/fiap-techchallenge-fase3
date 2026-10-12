@@ -1,0 +1,80 @@
+id: PRT-002
+titulo: Dor torácica e síndrome coronariana aguda
+versao: "1.3"
+area: Emergência / Cardiologia
+secoes:
+  - id: "1"
+    titulo: Triagem
+    texto: >
+      Todo paciente com dor torácica sugestiva de isquemia recebe classificação de risco
+      prioritária e eletrocardiograma de 12 derivações interpretado por médico em até
+      10 minutos da chegada.
+  - id: "2"
+    titulo: Supradesnivelamento de ST
+    texto: >
+      Diante de supradesnivelamento do segmento ST ou bloqueio de ramo esquerdo novo com
+      quadro compatível, acionar imediatamente a hemodinâmica. Meta porta-balão de até
+      90 minutos; se a angioplastia primária não estiver disponível nesse prazo, avaliar
+      fibrinólise em até 30 minutos, na ausência de contraindicações.
+  - id: "3"
+    titulo: Sem supradesnivelamento de ST
+    texto: >
+      Coletar troponina ultrassensível na admissão e repetir conforme o algoritmo de
+      0/1 h ou 0/3 h do laboratório. Estratificar risco com escore HEART ou GRACE e
+      manter monitorização cardíaca contínua.
+  - id: "4"
+    titulo: Terapia inicial
+    texto: >
+      Na ausência de contraindicação e alergia, considerar ácido acetilsalicílico
+      mastigável na admissão. Nitrato e analgesia conforme sintomas e pressão arterial;
+      evitar nitrato com PAS < 90 mmHg, infarto de ventrículo direito ou uso recente de
+      inibidor de fosfodiesterase-5. Oxigênio apenas se SpO2 < 90%.
+  - id: "5"
+    titulo: Alertas
+    texto: >
+      Supra de ST, troponina acima do percentil 99 com curva ascendente, instabilidade
+      hemodinâmica ou arritmia maligna geram alerta crítico ao cardiologista de plantão.
+faq:
+  - perguntas:
+      - Em quanto tempo o ECG deve ser feito na dor torácica?
+      - Qual o prazo do eletrocardiograma no protocolo de dor torácica?
+    resposta: >
+      O eletrocardiograma de 12 derivações deve ser realizado e interpretado por médico em
+      até 10 minutos da chegada do paciente.
+    fontes: ["1"]
+  - perguntas:
+      - Qual a meta porta-balão no infarto com supra?
+      - O que fazer diante de supra de ST?
+    resposta: >
+      Acionar imediatamente a hemodinâmica, com meta porta-balão de até 90 minutos. Se a
+      angioplastia não for possível nesse prazo, avaliar fibrinólise em até 30 minutos,
+      sem contraindicações.
+    fontes: ["2"]
+  - perguntas:
+      - Como repetir a troponina na dor torácica sem supra?
+      - Qual o fluxo da troponina no protocolo sem supra de ST?
+    resposta: >
+      Coletar troponina ultrassensível na admissão e repetir conforme o algoritmo de 0/1 h
+      ou 0/3 h do laboratório, estratificando risco por HEART ou GRACE com monitorização
+      contínua.
+    fontes: ["3"]
+  - perguntas:
+      - Quando não usar nitrato na dor torácica?
+      - Quais as contraindicações do nitrato no protocolo de SCA?
+    resposta: >
+      Evitar nitrato com PAS < 90 mmHg, suspeita de infarto de ventrículo direito ou uso
+      recente de inibidor de fosfodiesterase-5.
+    fontes: ["4"]
+  - perguntas:
+      - Devo dar oxigênio a todo paciente com dor torácica?
+      - Quando oferecer oxigênio na síndrome coronariana aguda?
+    resposta: >
+      Não. Oxigênio é indicado apenas se SpO2 < 90%.
+    fontes: ["4"]
+  - perguntas:
+      - Quando gerar alerta crítico na dor torácica?
+      - Quais achados da dor torácica exigem acionar o cardiologista?
+    resposta: >
+      Supra de ST, troponina acima do percentil 99 com curva ascendente, instabilidade
+      hemodinâmica ou arritmia maligna geram alerta crítico ao cardiologista de plantão.
+    fontes: ["5"]

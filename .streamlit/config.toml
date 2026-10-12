@@ -1,0 +1,7 @@
+[server]
+# O observador de arquivos inspeciona todos os módulos carregados e tenta importar o torch
+# (dependência opcional do transformers, não usada aqui), poluindo o log. Recarregue manualmente.
+fileWatcherType = "none"
+
+[browser]
+gatherUsageStats = false

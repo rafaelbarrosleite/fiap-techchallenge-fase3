@@ -1,0 +1,57 @@
+id: PRT-005
+titulo: Crise asmática no adulto
+versao: "1.0"
+area: Emergência / Pneumologia
+secoes:
+  - id: "1"
+    titulo: Avaliação de gravidade
+    texto: >
+      Avaliar fala, uso de musculatura acessória, frequência respiratória, SpO2 e, se
+      possível, pico de fluxo expiratório. Sinais de gravidade: fala em palavras, SpO2 < 92%,
+      tórax silencioso, cianose, confusão ou exaustão.
+  - id: "2"
+    titulo: Tratamento inicial
+    texto: >
+      Broncodilatador beta-2 de curta ação por aerossol dosimetrado com espaçador, repetido
+      a cada 20 minutos na primeira hora, associado a brometo de ipratrópio em crises
+      moderadas a graves. Corticoide sistêmico na primeira hora. Oxigênio para SpO2 entre
+      93% e 95%.
+  - id: "3"
+    titulo: Crise refratária
+    texto: >
+      Sem resposta após a primeira hora, considerar sulfato de magnésio intravenoso e
+      avaliação da UTI. Sinais de exaustão indicam necessidade de suporte ventilatório.
+  - id: "4"
+    titulo: Alta
+    texto: >
+      Alta se melhora sustentada por pelo menos 1 hora após o último broncodilatador, com
+      plano de ação escrito, corticoide oral por curto período e retorno ambulatorial.
+faq:
+  - perguntas:
+      - Quais sinais indicam crise asmática grave?
+      - Como reconhecer gravidade na asma?
+    resposta: >
+      Fala em palavras, SpO2 < 92%, tórax silencioso, cianose, confusão ou exaustão.
+    fontes: ["1"]
+  - perguntas:
+      - Qual o tratamento inicial da crise de asma?
+      - Como fazer o broncodilatador na primeira hora da crise asmática?
+    resposta: >
+      Beta-2 de curta ação com espaçador a cada 20 minutos na primeira hora, com
+      ipratrópio em crises moderadas a graves, corticoide sistêmico na primeira hora e
+      oxigênio para SpO2 entre 93% e 95%.
+    fontes: ["2"]
+  - perguntas:
+      - O que fazer se a asma não responde ao tratamento inicial?
+      - Quando usar magnésio na crise asmática?
+    resposta: >
+      Sem resposta após a primeira hora, considerar sulfato de magnésio intravenoso e
+      avaliação da UTI; exaustão indica suporte ventilatório.
+    fontes: ["3"]
+  - perguntas:
+      - Quando dar alta na crise de asma?
+      - Quais os critérios de alta da crise asmática?
+    resposta: >
+      Melhora sustentada por pelo menos 1 hora após o último broncodilatador, com plano de
+      ação escrito, corticoide oral de curta duração e retorno ambulatorial.
+    fontes: ["4"]

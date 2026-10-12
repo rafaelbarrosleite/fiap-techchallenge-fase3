@@ -1,0 +1,56 @@
+id: PRT-006
+titulo: Hipoglicemia no paciente internado
+versao: "1.0"
+area: Clínica médica / Endocrinologia
+secoes:
+  - id: "1"
+    titulo: Definição
+    texto: >
+      Glicemia < 70 mg/dL é hipoglicemia; < 54 mg/dL é hipoglicemia clinicamente
+      significativa. Sintomas neuroglicopênicos (confusão, convulsão, coma) caracterizam
+      hipoglicemia grave, independentemente do valor.
+  - id: "2"
+    titulo: Paciente consciente
+    texto: >
+      Paciente consciente e capaz de deglutir: oferecer 15 g de carboidrato de absorção
+      rápida por via oral e repetir a glicemia capilar em 15 minutos (regra 15/15).
+  - id: "3"
+    titulo: Paciente sem via oral
+    texto: >
+      Sem condição de via oral: glicose hipertônica intravenosa conforme prescrição médica
+      padronizada, ou glucagon intramuscular se não houver acesso venoso. Repetir a
+      glicemia em 15 minutos.
+  - id: "4"
+    titulo: Investigação e prevenção
+    texto: >
+      Revisar insulina, sulfonilureias, função renal, jejum e sepse. Registrar o evento e
+      comunicar o médico responsável para ajuste do esquema.
+faq:
+  - perguntas:
+      - Qual o valor de glicemia que define hipoglicemia?
+      - A partir de quanto a glicemia é considerada baixa?
+    resposta: >
+      Glicemia < 70 mg/dL define hipoglicemia, e < 54 mg/dL é clinicamente significativa;
+      sintomas neuroglicopênicos caracterizam quadro grave independentemente do valor.
+    fontes: ["1"]
+  - perguntas:
+      - Como tratar hipoglicemia em paciente consciente?
+      - O que é a regra 15/15?
+    resposta: >
+      Oferecer 15 g de carboidrato de absorção rápida por via oral e repetir a glicemia
+      capilar em 15 minutos.
+    fontes: ["2"]
+  - perguntas:
+      - E se o paciente com hipoglicemia não puder engolir?
+      - Como tratar hipoglicemia sem via oral?
+    resposta: >
+      Glicose hipertônica intravenosa conforme prescrição padronizada, ou glucagon
+      intramuscular se não houver acesso venoso, repetindo a glicemia em 15 minutos.
+    fontes: ["3"]
+  - perguntas:
+      - O que investigar após um episódio de hipoglicemia?
+      - Quais causas revisar na hipoglicemia hospitalar?
+    resposta: >
+      Revisar insulina, sulfonilureias, função renal, jejum e sepse, registrar o evento e
+      comunicar o médico responsável.
+    fontes: ["4"]

@@ -1,0 +1,254 @@
+{
+  "label": "base",
+  "pubmedqa": {
+    "n": 500,
+    "accuracy": 0.73,
+    "macro_f1": 0.5196073850112359,
+    "invalid_rate": 0.0,
+    "per_class": {
+      "yes": {
+        "precision": 0.7578616352201258,
+        "recall": 0.8731884057971014,
+        "f1": 0.8114478114478114,
+        "support": 276
+      },
+      "no": {
+        "precision": 0.7028571428571428,
+        "recall": 0.727810650887574,
+        "f1": 0.7151162790697675,
+        "support": 169
+      },
+      "maybe": {
+        "precision": 0.14285714285714285,
+        "recall": 0.01818181818181818,
+        "f1": 0.032258064516129024,
+        "support": 55
+      }
+    },
+    "confusion": {
+      "yes": {
+        "yes": 241,
+        "no": 32,
+        "maybe": 3,
+        "invalida": 0
+      },
+      "no": {
+        "yes": 43,
+        "no": 123,
+        "maybe": 3,
+        "invalida": 0
+      },
+      "maybe": {
+        "yes": 34,
+        "no": 20,
+        "maybe": 1,
+        "invalida": 0
+      }
+    },
+    "predicted_distribution": {
+      "no": 175,
+      "yes": 318,
+      "maybe": 7
+    }
+  },
+  "hospital": {
+    "geral": {
+      "cita_fonte": {
+        "mean": 0.5909090909090909,
+        "n": 44
+      },
+      "exige_validacao": {
+        "mean": 0.0,
+        "n": 3
+      },
+      "fonte_inventada": {
+        "mean": 0.38636363636363635,
+        "n": 44
+      },
+      "portugues": {
+        "mean": 1.0,
+        "n": 44
+      },
+      "protocolo_correto": {
+        "mean": 0.21951219512195122,
+        "n": 41
+      },
+      "recusa_adequada": {
+        "mean": 1.0,
+        "n": 2
+      },
+      "recusa_indevida": {
+        "mean": 0.07142857142857142,
+        "n": 42
+      },
+      "rouge_l": {
+        "mean": 0.16664797067405074,
+        "n": 44
+      },
+      "secao_correta": {
+        "mean": 0.21951219512195122,
+        "n": 41
+      }
+    },
+    "por_tarefa": {
+      "faq": {
+        "cita_fonte": {
+          "mean": 0.42105263157894735,
+          "n": 19
+        },
+        "fonte_inventada": {
+          "mean": 0.42105263157894735,
+          "n": 19
+        },
+        "portugues": {
+          "mean": 1.0,
+          "n": 19
+        },
+        "protocolo_correto": {
+          "mean": 0.0,
+          "n": 19
+        },
+        "recusa_indevida": {
+          "mean": 0.15789473684210525,
+          "n": 19
+        },
+        "rouge_l": {
+          "mean": 0.08396825543286301,
+          "n": 19
+        },
+        "secao_correta": {
+          "mean": 0.0,
+          "n": 19
+        }
+      },
+      "faq_rag": {
+        "cita_fonte": {
+          "mean": 1.0,
+          "n": 9
+        },
+        "fonte_inventada": {
+          "mean": 0.0,
+          "n": 9
+        },
+        "portugues": {
+          "mean": 1.0,
+          "n": 9
+        },
+        "protocolo_correto": {
+          "mean": 1.0,
+          "n": 9
+        },
+        "recusa_indevida": {
+          "mean": 0.0,
+          "n": 9
+        },
+        "rouge_l": {
+          "mean": 0.2593031544543357,
+          "n": 9
+        },
+        "secao_correta": {
+          "mean": 1.0,
+          "n": 9
+        }
+      },
+      "documento": {
+        "cita_fonte": {
+          "mean": 0.8888888888888888,
+          "n": 9
+        },
+        "exige_validacao": {
+          "mean": 0.0,
+          "n": 3
+        },
+        "fonte_inventada": {
+          "mean": 0.8888888888888888,
+          "n": 9
+        },
+        "portugues": {
+          "mean": 1.0,
+          "n": 9
+        },
+        "protocolo_correto": {
+          "mean": 0.0,
+          "n": 6
+        },
+        "recusa_indevida": {
+          "mean": 0.0,
+          "n": 9
+        },
+        "rouge_l": {
+          "mean": 0.19466035096138945,
+          "n": 9
+        },
+        "secao_correta": {
+          "mean": 0.0,
+          "n": 6
+        }
+      },
+      "seguranca": {
+        "cita_fonte": {
+          "mean": 0.5,
+          "n": 2
+        },
+        "fonte_inventada": {
+          "mean": 0.5,
+          "n": 2
+        },
+        "portugues": {
+          "mean": 1.0,
+          "n": 2
+        },
+        "protocolo_correto": {
+          "mean": 0.0,
+          "n": 2
+        },
+        "recusa_adequada": {
+          "mean": 1.0,
+          "n": 2
+        },
+        "rouge_l": {
+          "mean": 0.17187500000000003,
+          "n": 2
+        },
+        "secao_correta": {
+          "mean": 0.0,
+          "n": 2
+        }
+      },
+      "nota_clinica": {
+        "cita_fonte": {
+          "mean": 0.0,
+          "n": 5
+        },
+        "fonte_inventada": {
+          "mean": 0.0,
+          "n": 5
+        },
+        "portugues": {
+          "mean": 1.0,
+          "n": 5
+        },
+        "protocolo_correto": {
+          "mean": 0.0,
+          "n": 5
+        },
+        "recusa_indevida": {
+          "mean": 0.0,
+          "n": 5
+        },
+        "rouge_l": {
+          "mean": 0.26153846153846155,
+          "n": 5
+        },
+        "secao_correta": {
+          "mean": 0.0,
+          "n": 5
+        }
+      }
+    }
+  },
+  "latencia_media_s": {
+    "pubmedqa": 1.241,
+    "hospital": 5.08
+  }
+}

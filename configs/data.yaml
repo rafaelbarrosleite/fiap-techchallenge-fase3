@@ -1,0 +1,22 @@
+# Configuração do preparo de dados (Missão 1).
+seed: 42
+
+pubmedqa:
+  # pqa_labeled (1.000, rotulado por especialistas) é dividido em teste / validação / treino.
+  labeled_test: 500
+  labeled_valid: 250
+  # O restante (250) entra no treino e traz exemplos da classe "maybe",
+  # ausente do pqa_artificial.
+  # pqa_artificial (211 mil): amostra balanceada yes/no para o treino.
+  artificial_train: 4000
+  artificial_valid: 200
+
+hospital:
+  # Fração dos grupos (não dos exemplos) em cada split, para evitar vazamento entre variações.
+  valid_fraction: 0.1
+  test_fraction: 0.15
+  # Repetição dos exemplos do hospital no treino, para equilibrar com o PubMedQA.
+  train_upsample: 3
+
+curation:
+  max_chars: 6000

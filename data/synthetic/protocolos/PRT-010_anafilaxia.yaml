@@ -1,0 +1,59 @@
+id: PRT-010
+titulo: Anafilaxia
+versao: "1.2"
+area: Emergência
+secoes:
+  - id: "1"
+    titulo: Reconhecimento
+    texto: >
+      Início agudo de acometimento de pele ou mucosas (urticária, prurido, rubor,
+      angioedema) associado a comprometimento respiratório (sibilos, broncoespasmo,
+      estridor), hipotensão ou sintomas gastrointestinais graves após exposição a
+      provável alérgeno, como antibiótico, contraste, alimento ou picada de inseto. Hipotensão isolada após alérgeno conhecido também caracteriza
+      anafilaxia.
+  - id: "2"
+    titulo: Primeira medida
+    texto: >
+      Adrenalina intramuscular na face anterolateral da coxa é o tratamento de primeira
+      linha e não deve ser atrasada, na dose padronizada por peso, podendo ser repetida a
+      cada 5 a 15 minutos. Anti-histamínicos e corticoides são adjuvantes e não substituem
+      a adrenalina.
+  - id: "3"
+    titulo: Suporte
+    texto: >
+      Posicionar em decúbito com membros elevados (ou sentado se dispneia), oxigênio,
+      acesso venoso e cristaloide em bolus se hipotensão. Suspender o agente suspeito.
+  - id: "4"
+    titulo: Observação e registro
+    texto: >
+      Observar por no mínimo 6 horas pelo risco de reação bifásica. Registrar o alérgeno
+      no campo de alergias do prontuário e gerar alerta para a farmácia.
+faq:
+  - perguntas:
+      - Qual a primeira medicação na anafilaxia?
+      - Anti-histamínico substitui adrenalina na anafilaxia?
+    resposta: >
+      A adrenalina intramuscular na coxa é o tratamento de primeira linha e não deve ser
+      atrasada; anti-histamínicos e corticoides são apenas adjuvantes.
+    fontes: ["2"]
+  - perguntas:
+      - Quanto tempo observar após anafilaxia?
+      - Por que manter o paciente em observação após anafilaxia?
+    resposta: >
+      No mínimo 6 horas, pelo risco de reação bifásica.
+    fontes: ["4"]
+  - perguntas:
+      - Como reconhecer anafilaxia?
+      - Quais critérios definem anafilaxia?
+    resposta: >
+      Início agudo de pele ou mucosas com comprometimento respiratório, hipotensão ou
+      sintomas gastrointestinais graves após provável alérgeno; hipotensão isolada após
+      alérgeno conhecido também caracteriza o quadro.
+    fontes: ["1"]
+  - perguntas:
+      - O que registrar após uma anafilaxia?
+      - Quem avisar depois de uma reação anafilática?
+    resposta: >
+      Registrar o alérgeno no campo de alergias do prontuário e gerar alerta para a
+      farmácia.
+    fontes: ["4"]

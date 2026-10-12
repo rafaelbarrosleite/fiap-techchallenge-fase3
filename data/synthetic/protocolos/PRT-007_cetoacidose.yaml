@@ -1,0 +1,68 @@
+id: PRT-007
+titulo: Cetoacidose diabética no adulto
+versao: "1.0"
+area: Emergência / Endocrinologia
+secoes:
+  - id: "1"
+    titulo: Critérios diagnósticos
+    texto: >
+      Glicemia > 250 mg/dL (ou diabetes conhecido), pH < 7,30 ou bicarbonato < 18 mEq/L e
+      cetonemia ou cetonúria positiva.
+  - id: "2"
+    titulo: Hidratação
+    texto: >
+      Iniciar soro fisiológico 0,9% 15 a 20 mL/kg na primeira hora, ajustando depois
+      conforme estado volêmico, sódio corrigido e função cardíaca.
+  - id: "3"
+    titulo: Potássio e insulina
+    texto: >
+      Dosar potássio antes da insulina. Com K < 3,3 mEq/L, repor potássio e adiar a
+      insulina. Com K ≥ 3,3 mEq/L, iniciar insulina regular em infusão contínua conforme
+      prescrição padronizada da unidade.
+  - id: "4"
+    titulo: Monitorização
+    texto: >
+      Glicemia capilar a cada hora; eletrólitos e gasometria a cada 2 a 4 horas. Quando a
+      glicemia atingir 200 a 250 mg/dL, associar soro glicosado à hidratação.
+  - id: "5"
+    titulo: Resolução
+    texto: >
+      Considerar resolvida com pH > 7,30, bicarbonato ≥ 18 mEq/L e ânion gap normal.
+      Iniciar insulina subcutânea com sobreposição de 1 a 2 horas antes de suspender a
+      infusão.
+faq:
+  - perguntas:
+      - Quais os critérios diagnósticos de cetoacidose?
+      - Como confirmar cetoacidose diabética?
+    resposta: >
+      Glicemia > 250 mg/dL ou diabetes conhecido, pH < 7,30 ou bicarbonato < 18 mEq/L e
+      cetonemia ou cetonúria positiva.
+    fontes: ["1"]
+  - perguntas:
+      - Posso iniciar insulina na cetoacidose com potássio baixo?
+      - Qual o cuidado com potássio antes da insulina na CAD?
+    resposta: >
+      Não. Com K < 3,3 mEq/L, repor potássio e adiar a insulina; com K ≥ 3,3 mEq/L,
+      iniciar insulina regular em infusão contínua conforme prescrição padronizada.
+    fontes: ["3"]
+  - perguntas:
+      - Qual a hidratação inicial na cetoacidose?
+      - Quanto de soro fazer na primeira hora da CAD?
+    resposta: >
+      Soro fisiológico 0,9% 15 a 20 mL/kg na primeira hora, ajustando conforme volemia,
+      sódio corrigido e função cardíaca.
+    fontes: ["2"]
+  - perguntas:
+      - Quando associar soro glicosado na cetoacidose?
+      - Como monitorar a cetoacidose?
+    resposta: >
+      Glicemia capilar de hora em hora e eletrólitos e gasometria a cada 2 a 4 horas;
+      associar soro glicosado quando a glicemia chegar a 200–250 mg/dL.
+    fontes: ["4"]
+  - perguntas:
+      - Quando a cetoacidose está resolvida?
+      - Como fazer a transição para insulina subcutânea na CAD?
+    resposta: >
+      Resolvida com pH > 7,30, bicarbonato ≥ 18 mEq/L e ânion gap normal; iniciar insulina
+      subcutânea com 1 a 2 horas de sobreposição antes de suspender a infusão.
+    fontes: ["5"]

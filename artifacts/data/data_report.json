@@ -1,0 +1,188 @@
+{
+  "config": {
+    "seed": 42,
+    "pubmedqa": {
+      "labeled_test": 500,
+      "labeled_valid": 250,
+      "artificial_train": 4000,
+      "artificial_valid": 200
+    },
+    "hospital": {
+      "valid_fraction": 0.1,
+      "test_fraction": 0.15,
+      "train_upsample": 3
+    },
+    "curation": {
+      "max_chars": 6000
+    }
+  },
+  "pubmedqa": {
+    "raw_sizes": {
+      "pqa_labeled": 1000,
+      "pqa_artificial": 211269
+    },
+    "raw_decisions": {
+      "pqa_labeled": {
+        "yes": 552,
+        "no": 338,
+        "maybe": 110
+      },
+      "pqa_artificial": {
+        "yes": 196144,
+        "no": 15125
+      }
+    },
+    "leakage_removed_from_artificial": 0
+  },
+  "hospital": {
+    "protocolos": [
+      {
+        "id": "PRT-000",
+        "titulo": "Política de uso do assistente virtual e validação humana",
+        "versao": "1.0"
+      },
+      {
+        "id": "PRT-001",
+        "titulo": "Sepse e choque séptico no adulto",
+        "versao": "2.0"
+      },
+      {
+        "id": "PRT-002",
+        "titulo": "Dor torácica e síndrome coronariana aguda",
+        "versao": "1.3"
+      },
+      {
+        "id": "PRT-003",
+        "titulo": "Acidente vascular cerebral isquêmico agudo",
+        "versao": "1.1"
+      },
+      {
+        "id": "PRT-004",
+        "titulo": "Pneumonia adquirida na comunidade no adulto",
+        "versao": "1.2"
+      },
+      {
+        "id": "PRT-005",
+        "titulo": "Crise asmática no adulto",
+        "versao": "1.0"
+      },
+      {
+        "id": "PRT-006",
+        "titulo": "Hipoglicemia no paciente internado",
+        "versao": "1.0"
+      },
+      {
+        "id": "PRT-007",
+        "titulo": "Cetoacidose diabética no adulto",
+        "versao": "1.0"
+      },
+      {
+        "id": "PRT-008",
+        "titulo": "Profilaxia de tromboembolismo venoso em pacientes clínicos",
+        "versao": "2.1"
+      },
+      {
+        "id": "PRT-009",
+        "titulo": "Crise hipertensiva",
+        "versao": "1.0"
+      },
+      {
+        "id": "PRT-010",
+        "titulo": "Anafilaxia",
+        "versao": "1.1"
+      },
+      {
+        "id": "PRT-011",
+        "titulo": "Insuficiência cardíaca descompensada",
+        "versao": "1.0"
+      },
+      {
+        "id": "PRT-012",
+        "titulo": "Exames pendentes e comunicação de resultados críticos",
+        "versao": "1.4"
+      }
+    ],
+    "exemplos_gerados": 290,
+    "pii_anonimizada_nas_notas": {
+      "ENDERECO": 30,
+      "NOME": 30,
+      "MEDICO": 30,
+      "CPF": 30,
+      "TELEFONE": 30,
+      "DATA": 30
+    }
+  },
+  "removidos_na_curadoria": {},
+  "splits": {
+    "train": {
+      "total": 4898,
+      "por_fonte": {
+        "pubmedqa": 4250,
+        "hospital": 648
+      },
+      "por_tarefa": {
+        "pqa_artificial": 4000,
+        "pqa_labeled": 250,
+        "seguranca": 36,
+        "faq": 267,
+        "nota_clinica": 60,
+        "faq_rag": 132,
+        "documento": 153
+      },
+      "pubmedqa_decisoes": {
+        "yes": 2138,
+        "no": 2085,
+        "maybe": 27
+      }
+    },
+    "valid": {
+      "total": 480,
+      "por_fonte": {
+        "pubmedqa": 450,
+        "hospital": 30
+      },
+      "por_tarefa": {
+        "pqa_labeled": 250,
+        "pqa_artificial": 200,
+        "faq": 12,
+        "faq_rag": 6,
+        "documento": 5,
+        "seguranca": 2,
+        "nota_clinica": 5
+      },
+      "pubmedqa_decisoes": {
+        "maybe": 28,
+        "no": 184,
+        "yes": 238
+      }
+    },
+    "test": {
+      "total": 544,
+      "por_fonte": {
+        "pubmedqa": 500,
+        "hospital": 44
+      },
+      "por_tarefa": {
+        "pqa_labeled": 500,
+        "faq": 19,
+        "faq_rag": 9,
+        "documento": 9,
+        "seguranca": 2,
+        "nota_clinica": 5
+      },
+      "pubmedqa_decisoes": {
+        "maybe": 55,
+        "no": 169,
+        "yes": 276
+      }
+    }
+  },
+  "sha256": {
+    "train.jsonl": "2e9ad300a4457af5687593118980bdca89ab34fb8eba93cb5c68168ffe0c2a26",
+    "mlx/train.jsonl": "4a18b897aa7ea07120dc1ab95cdef7cbcafd1c76787ba8cad0d3979ee7fc5b98",
+    "valid.jsonl": "90b944be76b79e246163768afb81a803b7655a1515c4087888966013f200e4bc",
+    "mlx/valid.jsonl": "a44c1c807f2e19bb29478817082fae2f809416d77d247e706bdeedb5379ae4ff",
+    "test.jsonl": "03a2dfe2992211fe9ebe5243fe9fffdc63b53993ac265bf5a79da47d552f8a8f",
+    "mlx/test.jsonl": "82a38f410589b2c1a085326b022cdb9ff35d45b2cd221268fce8fff9b9e67907"
+  }
+}

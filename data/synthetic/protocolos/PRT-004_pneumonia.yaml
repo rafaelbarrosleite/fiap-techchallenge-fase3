@@ -1,0 +1,57 @@
+id: PRT-004
+titulo: Pneumonia adquirida na comunidade no adulto
+versao: "1.3"
+area: Clínica médica / Infectologia
+secoes:
+  - id: "1"
+    titulo: Diagnóstico
+    texto: >
+      Quadro agudo de tosse, febre, dispneia ou dor pleurítica com achado novo em
+      radiografia de tórax. Solicitar hemograma, ureia, creatinina e oximetria; em
+      internados, hemoculturas e escarro antes do antibiótico quando possível.
+  - id: "2"
+    titulo: Estratificação de gravidade
+    texto: >
+      Aplicar CURB-65 (confusão, ureia > 50 mg/dL, FR ≥ 30, PAS < 90 ou PAD ≤ 60,
+      idade ≥ 65). Escore 0–1: considerar tratamento ambulatorial. Escore 2: considerar
+      internação. Escore ≥ 3: internação e avaliação de UTI.
+  - id: "3"
+    titulo: Antibioticoterapia
+    texto: >
+      Esquema antimicrobiano conforme a padronização da CCIH. Ambulatorial sem comorbidades: betalactâmico ou
+      macrolídeo em monoterapia. Internado em enfermaria: betalactâmico associado a
+      macrolídeo. Ajustar à função renal e a alergias registradas no prontuário.
+  - id: "4"
+    titulo: Reavaliação
+    texto: >
+      Reavaliar em 48 a 72 horas. Ausência de melhora exige revisar diagnóstico, culturas
+      e complicações, como derrame pleural.
+faq:
+  - perguntas:
+      - Como estratificar gravidade na pneumonia comunitária?
+      - Quando internar paciente com pneumonia?
+    resposta: >
+      Usar o CURB-65: 0–1 considerar tratamento ambulatorial; 2 considerar internação;
+      ≥ 3 internação e avaliação de UTI.
+    fontes: ["2"]
+  - perguntas:
+      - Qual antibiótico usar na pneumonia em enfermaria?
+      - Qual o esquema antimicrobiano para pneumonia internada?
+    resposta: >
+      Pela padronização da CCIH, paciente internado em enfermaria recebe betalactâmico
+      associado a macrolídeo, ajustado à função renal e às alergias do prontuário.
+    fontes: ["3"]
+  - perguntas:
+      - Quais exames pedir na pneumonia?
+      - Que exames confirmam pneumonia comunitária?
+    resposta: >
+      Radiografia de tórax, hemograma, ureia, creatinina e oximetria; em internados,
+      hemoculturas e escarro antes do antibiótico quando possível.
+    fontes: ["1"]
+  - perguntas:
+      - Quando reavaliar a pneumonia após iniciar antibiótico?
+      - O que fazer se a pneumonia não melhora?
+    resposta: >
+      Reavaliar em 48 a 72 horas; sem melhora, revisar diagnóstico, culturas e
+      complicações como derrame pleural.
+    fontes: ["4"]

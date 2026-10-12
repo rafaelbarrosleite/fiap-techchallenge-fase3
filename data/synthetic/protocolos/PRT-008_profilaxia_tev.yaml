@@ -1,0 +1,53 @@
+id: PRT-008
+titulo: Profilaxia de tromboembolismo venoso em pacientes clínicos
+versao: "2.1"
+area: Clínica médica
+secoes:
+  - id: "1"
+    titulo: Avaliação de risco
+    texto: >
+      Todo paciente clínico internado deve ter o risco de tromboembolismo venoso avaliado
+      em até 24 horas da admissão pelo escore de Pádua. Escore ≥ 4 indica alto risco.
+  - id: "2"
+    titulo: Avaliação de sangramento
+    texto: >
+      Antes da profilaxia farmacológica, avaliar sangramento ativo, plaquetas < 50.000/mm3,
+      coagulopatia, cirurgia ou punção neuraxial recente e insuficiência renal grave.
+  - id: "3"
+    titulo: Profilaxia
+    texto: >
+      Alto risco sem contraindicação: profilaxia farmacológica com heparina conforme
+      padronização da farmácia, com ajuste para clearance de creatinina < 30 mL/min. Com
+      contraindicação ao anticoagulante: compressão pneumática intermitente.
+  - id: "4"
+    titulo: Reavaliação
+    texto: >
+      Reavaliar o risco a cada 72 horas, em mudança clínica relevante e na alta hospitalar.
+faq:
+  - perguntas:
+      - Como avaliar risco de trombose em paciente clínico?
+      - Qual escore usar para profilaxia de TEV?
+    resposta: >
+      Usar o escore de Pádua em até 24 horas da admissão; escore ≥ 4 indica alto risco.
+    fontes: ["1"]
+  - perguntas:
+      - Quando não fazer heparina profilática?
+      - Quais contraindicações da profilaxia farmacológica de TEV?
+    resposta: >
+      Sangramento ativo, plaquetas < 50.000/mm3, coagulopatia, cirurgia ou punção neuraxial
+      recente e insuficiência renal grave exigem avaliação; com contraindicação, usar
+      compressão pneumática intermitente.
+    fontes: ["2", "3"]
+  - perguntas:
+      - Precisa ajustar a heparina profilática na insuficiência renal?
+      - Como fica a profilaxia de TEV com clearance baixo?
+    resposta: >
+      Sim. A dose segue a padronização da farmácia com ajuste para clearance de creatinina
+      < 30 mL/min.
+    fontes: ["3"]
+  - perguntas:
+      - Com que frequência reavaliar o risco de TEV?
+      - Quando refazer o escore de Pádua?
+    resposta: >
+      A cada 72 horas, em mudança clínica relevante e na alta hospitalar.
+    fontes: ["4"]

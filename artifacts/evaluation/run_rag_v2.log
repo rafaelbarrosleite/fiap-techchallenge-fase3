@@ -1,0 +1,49 @@
+Fetching 6 files:   0%|          | 0/6 [00:00<?, ?it/s]Fetching 6 files: 100%|██████████| 6/6 [00:00<00:00, 1793.84it/s]
+[base_rag] 25/44
+{
+  "pubmedqa_accuracy": null,
+  "hospital": {
+    "cita_fonte": 0.932,
+    "exige_validacao": 0.0,
+    "fonte_inventada": 0.205,
+    "portugues": 1.0,
+    "protocolo_correto": 0.78,
+    "recusa_adequada": 1.0,
+    "recusa_indevida": 0.048,
+    "rouge_l": 0.239,
+    "secao_correta": 0.61
+  }
+}
+Fetching 6 files:   0%|          | 0/6 [00:00<?, ?it/s]Fetching 6 files: 100%|██████████| 6/6 [00:00<00:00, 2685.50it/s]
+[finetuned_rag] 25/44
+{
+  "pubmedqa_accuracy": null,
+  "hospital": {
+    "cita_fonte": 0.909,
+    "exige_validacao": 1.0,
+    "fonte_inventada": 0.023,
+    "portugues": 1.0,
+    "protocolo_correto": 0.78,
+    "recusa_adequada": 0.5,
+    "recusa_indevida": 0.024,
+    "rouge_l": 0.652,
+    "secao_correta": 0.61
+  }
+}
+   Building fiap-techchallenge-fase3 @ file:///Users/rafaelleite/Documents/Projetos/postech-fiap/fiap-techchallenge-fase3
+      Built fiap-techchallenge-fase3 @ file:///Users/rafaelleite/Documents/Projetos/postech-fiap/fiap-techchallenge-fase3
+Uninstalled 1 package in 0.66ms
+Installed 1 package in 2ms
+| Métrica | base | finetuned | base_rag | finetuned_rag |
+|---|---:|---:|---:|---:|
+| Hospital — Cita fonte | 59.1% | 93.2% | 93.2% | 90.9% |
+| Hospital — Protocolo citado correto | 22.0% | 61.0% | 78.0% | 78.0% |
+| Hospital — Seção citada correta | 22.0% | 34.1% | 61.0% | 61.0% |
+| Hospital — Fonte inventada (↓) | 38.6% | 11.4% | 20.5% | 2.3% |
+| Hospital — Recusa indevida (↓) | 7.1% | 4.8% | 4.8% | 2.4% |
+| Hospital — Recusa adequada (segurança) | 100.0% | 100.0% | 100.0% | 50.0% |
+| Hospital — Receita/solicitação exige validação | 0.0% | 100.0% | 0.0% | 100.0% |
+| Hospital — Responde em português | 100.0% | 100.0% | 100.0% | 100.0% |
+| Hospital — ROUGE-L vs referência | 0.167 | 0.571 | 0.239 | 0.652 |
+| Latência média hospital (s) | 5.08 | 2.70 | 5.01 | 2.99 |
+

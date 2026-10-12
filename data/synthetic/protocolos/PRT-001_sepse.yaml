@@ -1,0 +1,91 @@
+id: PRT-001
+titulo: Sepse e choque séptico no adulto
+versao: "2.0"
+area: Emergência / Terapia intensiva
+secoes:
+  - id: "1"
+    titulo: Critérios de suspeita
+    texto: >
+      Suspeitar de sepse em paciente com infecção suspeita ou confirmada e pelo menos um
+      sinal de disfunção orgânica ou alerta: hipotensão (PAS < 90 mmHg ou PAM < 65 mmHg),
+      rebaixamento do nível de consciência, frequência respiratória ≥ 22 irpm,
+      SpO2 < 90%, oligúria, lactato > 2 mmol/L, plaquetas < 100.000/mm3 ou
+      bilirrubina elevada. Escore qSOFA ≥ 2 reforça a suspeita, mas não a exclui.
+  - id: "2"
+    titulo: Pacote da primeira hora
+    texto: >
+      Após a suspeita: (a) coletar lactato sérico; (b) coletar duas amostras de
+      hemocultura antes do antibiótico, sem atrasá-lo; (c) iniciar antimicrobiano de
+      amplo espectro em até 1 hora, conforme padronização da CCIH; (d) em hipotensão ou
+      lactato ≥ 4 mmol/L, infundir cristaloide 30 mL/kg nas primeiras 3 horas, com
+      reavaliação de responsividade a volume e sinais de congestão.
+  - id: "3"
+    titulo: Vasopressor
+    texto: >
+      Se PAM < 65 mmHg persistir durante ou após a reposição volêmica, iniciar
+      noradrenalina como vasopressor de primeira escolha e solicitar avaliação da UTI.
+  - id: "4"
+    titulo: Reavaliação
+    texto: >
+      Repetir lactato em 2 a 4 horas se o inicial for > 2 mmol/L. Registrar reavaliação
+      de perfusão (tempo de enchimento capilar, diurese, nível de consciência) em até
+      6 horas.
+  - id: "5"
+    titulo: Alertas e comunicação
+    texto: >
+      Ao abrir o protocolo, notificar o médico plantonista e o time de resposta rápida.
+      Lactato ≥ 4 mmol/L, PAM < 65 mmHg após volume ou necessidade de vasopressor são
+      critérios de alerta crítico e de vaga em UTI.
+faq:
+  - perguntas:
+      - Em quanto tempo devo iniciar o antibiótico na suspeita de sepse?
+      - Qual o prazo para o antimicrobiano no protocolo de sepse?
+      - Até quando o antibiótico tem que ser feito na sepse?
+    resposta: >
+      O antimicrobiano de amplo espectro deve ser iniciado em até 1 hora após a suspeita,
+      conforme a padronização da CCIH, idealmente após coletar duas hemoculturas, sem
+      atrasar a administração.
+    fontes: ["2"]
+  - perguntas:
+      - Quais exames coletar na primeira hora da sepse?
+      - O que o pacote da primeira hora de sepse inclui de exames?
+    resposta: >
+      Na primeira hora devem ser coletados lactato sérico e duas amostras de hemocultura
+      antes do antibiótico.
+    fontes: ["2"]
+  - perguntas:
+      - Quanto de volume fazer em paciente séptico hipotenso?
+      - Qual a reposição volêmica inicial no choque séptico?
+    resposta: >
+      Em hipotensão ou lactato ≥ 4 mmol/L, o protocolo prevê cristaloide 30 mL/kg nas
+      primeiras 3 horas, reavaliando responsividade a volume e sinais de congestão.
+    fontes: ["2"]
+  - perguntas:
+      - Quando começar vasopressor na sepse?
+      - Qual vasopressor usar no choque séptico?
+    resposta: >
+      Se a PAM continuar abaixo de 65 mmHg durante ou após a reposição volêmica, o
+      protocolo indica noradrenalina como primeira escolha e avaliação da UTI.
+    fontes: ["3"]
+  - perguntas:
+      - Quando repetir o lactato na sepse?
+      - O lactato precisa ser recoletado no protocolo de sepse?
+    resposta: >
+      Sim. Se o lactato inicial for maior que 2 mmol/L, ele deve ser repetido em 2 a 4 horas.
+    fontes: ["4"]
+  - perguntas:
+      - Quais critérios fazem suspeitar de sepse?
+      - Como identificar disfunção orgânica na suspeita de sepse?
+    resposta: >
+      Infecção suspeita ou confirmada com sinal de disfunção: PAS < 90 ou PAM < 65 mmHg,
+      rebaixamento de consciência, FR ≥ 22 irpm, SpO2 < 90%, oligúria, lactato > 2 mmol/L,
+      plaquetas < 100.000/mm3 ou bilirrubina elevada. qSOFA ≥ 2 reforça, mas não exclui.
+    fontes: ["1"]
+  - perguntas:
+      - Quem devo avisar ao abrir protocolo de sepse?
+      - Quais são os alertas críticos da sepse?
+    resposta: >
+      Ao abrir o protocolo, notificar o plantonista e o time de resposta rápida. Lactato
+      ≥ 4 mmol/L, PAM < 65 mmHg após volume ou uso de vasopressor geram alerta crítico e
+      solicitação de vaga em UTI.
+    fontes: ["5"]

@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+*.egg-info/
+
+# Segredos
+.env
+
+# Dados e modelos pesados (regenerados por script)
+data/raw/*
+!data/raw/.gitkeep
+# Splits regeneráveis por `uv run prepare-data` (hashes em artifacts/data/data_report.json)
+data/processed/*
+!data/processed/.gitkeep
+data/hospital.db
+models/
+*.safetensors
+*.gguf
+
+# Saídas geradas
+logs/*
+!logs/.gitkeep
+.DS_Store
+data/checkpoints.sqlite*

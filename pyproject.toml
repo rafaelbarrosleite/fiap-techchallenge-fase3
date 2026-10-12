@@ -1,0 +1,47 @@
+[build-system]
+requires = ["hatchling==1.27.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "fiap-techchallenge-fase3"
+version = "0.1.0"
+description = "Assistente médico com LLaMA ajustada (LoRA), LangChain e LangGraph para o Tech Challenge Fase 3 da FIAP."
+readme = "README.md"
+requires-python = ">=3.11,<3.14"
+dependencies = [
+    "faker==40.41.0",
+    "huggingface-hub==1.33.0",
+    "langchain-core==1.6.9",
+    "langgraph==1.2.14",
+    "langgraph-checkpoint-sqlite==3.1.1",
+    "matplotlib==3.11.2",
+    "mlx-lm[train]==0.32.0 ; platform_machine == 'arm64' and sys_platform == 'darwin'",
+    "pandas==3.0.6",
+    "pyarrow==25.0.1",
+    "pydantic==2.13.5",
+    "python-dotenv==1.2.4",
+    "pyyaml==6.0.3",
+    "rank-bm25==0.2.2",
+    "snowballstemmer==3.1.1",
+    "streamlit==1.65.0",
+]
+
+[project.scripts]
+assistente = "assistente_medico.app.cli:main"
+prepare-data = "assistente_medico.data.prepare:main"
+finetune = "assistente_medico.finetune.train:main"
+evaluate-model = "assistente_medico.evaluation.evaluate_model:main"
+build-hospital-db = "assistente_medico.db.seed:main"
+evaluate-safety = "assistente_medico.evaluation.safety_battery:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/assistente_medico"]
+
+[tool.pytest.ini_options]
+addopts = "-ra"
+testpaths = ["tests"]
+
+[dependency-groups]
+dev = [
+    "pytest==9.1.1",
+]

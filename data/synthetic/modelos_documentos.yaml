@@ -1,0 +1,156 @@
+# Modelos internos de documentos (fictícios, uso acadêmico).
+# Placeholders entre chaves são preenchidos pelo gerador de exemplos.
+modelos:
+  - id: MOD-REC-01
+    tipo: receita
+    titulo: Rascunho de prescrição
+    texto: |
+      RASCUNHO DE PRESCRIÇÃO — NÃO VÁLIDO SEM ASSINATURA
+      Paciente: {paciente_id} | Idade: {idade} anos | Alergias: {alergias}
+      Medicamento: {medicamento}
+      Dose / via / frequência: a definir pelo médico responsável
+      Indicação: {indicacao}
+      Referência: {fonte}
+      Status: PENDENTE_VALIDACAO — requer aprovação do médico responsável.
+
+  - id: MOD-SOL-01
+    tipo: solicitacao_exame
+    titulo: Solicitação de exame
+    texto: |
+      SOLICITAÇÃO DE EXAME — RASCUNHO
+      Paciente: {paciente_id} | Idade: {idade} anos
+      Exame: {exame}
+      Prioridade: {prioridade}
+      Justificativa clínica: {indicacao}
+      Referência: {fonte}
+      Status: PENDENTE_VALIDACAO — requer assinatura do médico solicitante.
+
+  - id: MOD-LAU-01
+    tipo: laudo
+    titulo: Laudo de radiografia de tórax
+    texto: |
+      LAUDO — RADIOGRAFIA DE TÓRAX PA E PERFIL
+      Paciente: {paciente_id}
+      Técnica: incidências PA e perfil.
+      Achados: {achados}
+      Impressão: {impressao}
+      Observação: laudo preliminar gerado para revisão do radiologista responsável.
+
+  - id: MOD-LAU-02
+    tipo: laudo
+    titulo: Laudo de eletrocardiograma
+    texto: |
+      LAUDO — ELETROCARDIOGRAMA DE 12 DERIVAÇÕES
+      Paciente: {paciente_id}
+      Ritmo: {ritmo} | FC: {fc} bpm
+      Achados: {achados}
+      Conclusão: {impressao}
+      Observação: laudo preliminar para revisão do cardiologista responsável.
+
+  - id: MOD-POP-01
+    tipo: procedimento
+    titulo: POP — Coleta de hemoculturas
+    texto: |
+      PROCEDIMENTO OPERACIONAL PADRÃO — COLETA DE HEMOCULTURAS
+      1. Higienizar as mãos e calçar luvas estéreis.
+      2. Realizar antissepsia da pele com clorexidina alcoólica e aguardar secagem.
+      3. Coletar dois pares de frascos de sítios de punção diferentes.
+      4. Identificar frascos com o identificador do paciente, horário e sítio.
+      5. Enviar ao laboratório em até 2 horas; não refrigerar.
+      Referência: PRT-001 §2.
+
+  - id: MOD-ALT-01
+    tipo: alerta
+    titulo: Alerta para equipe médica
+    texto: |
+      ALERTA {gravidade} — {titulo_alerta}
+      Paciente: {paciente_id} | Leito: {leito}
+      Motivo: {motivo}
+      Ação recomendada pelo protocolo: {acao}
+      Referência: {fonte}
+      Destino: {destino}
+
+# Casos usados para preencher os modelos (dados fictícios).
+casos:
+  receita:
+    - medicamento: noradrenalina
+      indicacao: PAM < 65 mmHg após reposição volêmica em choque séptico
+      fonte: PRT-001 §3
+    - medicamento: antimicrobiano de amplo espectro conforme CCIH
+      indicacao: suspeita de sepse, primeira hora
+      fonte: PRT-001 §2
+    - medicamento: betalactâmico associado a macrolídeo
+      indicacao: pneumonia comunitária em enfermaria (CURB-65 = 2)
+      fonte: PRT-004 §3
+    - medicamento: heparina profilática conforme padronização da farmácia
+      indicacao: risco de TEV alto (Pádua ≥ 4) sem contraindicação
+      fonte: PRT-008 §3
+    - medicamento: adrenalina intramuscular
+      indicacao: anafilaxia após exposição a provável alérgeno
+      fonte: PRT-010 §2
+    - medicamento: diurético de alça intravenoso
+      indicacao: IC descompensada perfil quente e úmido
+      fonte: PRT-011 §3
+    - medicamento: insulina regular em infusão contínua
+      indicacao: cetoacidose diabética com potássio ≥ 3,3 mEq/L
+      fonte: PRT-007 §3
+  solicitacao_exame:
+    - exame: lactato sérico e duas hemoculturas
+      prioridade: urgente
+      indicacao: suspeita de sepse
+      fonte: PRT-001 §2
+    - exame: troponina ultrassensível (0 h e 1 h)
+      prioridade: urgente
+      indicacao: dor torácica sem supradesnivelamento de ST
+      fonte: PRT-002 §3
+    - exame: tomografia de crânio sem contraste
+      prioridade: emergência
+      indicacao: código AVC
+      fonte: PRT-003 §2
+    - exame: gasometria e eletrólitos
+      prioridade: urgente
+      indicacao: monitorização de cetoacidose diabética
+      fonte: PRT-007 §4
+    - exame: BNP e ecocardiograma
+      prioridade: rotina
+      indicacao: insuficiência cardíaca descompensada sem eco recente
+      fonte: PRT-011 §2
+  laudo_rx:
+    - achados: opacidade alveolar em lobo inferior direito com broncograma aéreo; seios costofrênicos livres.
+      impressao: achado compatível com processo consolidativo em base direita; correlacionar com a clínica.
+    - achados: índice cardiotorácico aumentado, cefalização da trama vascular e linhas B de Kerley.
+      impressao: sinais sugestivos de congestão pulmonar.
+    - achados: campos pulmonares sem opacidades; área cardíaca normal.
+      impressao: radiografia de tórax sem alterações significativas.
+  laudo_ecg:
+    - ritmo: sinusal
+      fc: 98
+      achados: supradesnivelamento de ST de 2 mm em V1–V4.
+      impressao: supra de ST em parede anterior — acionar protocolo PRT-002 §2.
+    - ritmo: sinusal
+      fc: 72
+      achados: sem alterações de repolarização.
+      impressao: ECG dentro dos limites da normalidade.
+    - ritmo: fibrilação atrial
+      fc: 124
+      achados: ausência de ondas P, intervalos RR irregulares.
+      impressao: fibrilação atrial com resposta ventricular elevada.
+  alerta:
+    - gravidade: CRÍTICO
+      titulo_alerta: Lactato elevado
+      motivo: lactato 4,6 mmol/L em paciente com suspeita de sepse
+      acao: cristaloide 30 mL/kg, reavaliação e solicitação de vaga em UTI
+      fonte: PRT-001 §2 e §5
+      destino: médico plantonista e time de resposta rápida
+    - gravidade: CRÍTICO
+      titulo_alerta: Potássio crítico
+      motivo: potássio 6,8 mEq/L
+      acao: comunicar o médico responsável em até 30 minutos com leitura de confirmação
+      fonte: PRT-012 §2 e §3
+      destino: médico responsável
+    - gravidade: ATENÇÃO
+      titulo_alerta: Exame pendente
+      motivo: troponina de 1 h solicitada como urgente e não coletada
+      acao: sinalizar ao médico responsável e priorizar a coleta
+      fonte: PRT-012 §1 e PRT-002 §3
+      destino: médico responsável

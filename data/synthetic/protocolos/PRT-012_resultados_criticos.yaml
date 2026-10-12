@@ -1,0 +1,59 @@
+id: PRT-012
+titulo: Exames pendentes e comunicação de resultados críticos
+versao: "1.4"
+area: Institucional / Segurança do paciente
+secoes:
+  - id: "1"
+    titulo: Exames pendentes
+    texto: >
+      Exame solicitado e não realizado em até 24 horas (ou 1 hora quando marcado como
+      urgente) é considerado pendente e deve ser sinalizado ao médico responsável pelo
+      paciente na passagem de plantão.
+  - id: "2"
+    titulo: Valores críticos
+    texto: >
+      São críticos, entre outros: potássio < 2,5 ou > 6,5 mEq/L; sódio < 120 ou > 160 mEq/L;
+      glicemia < 50 ou > 500 mg/dL; lactato ≥ 4 mmol/L; hemoglobina < 6 g/dL; plaquetas
+      < 20.000/mm3; troponina acima do percentil 99 com curva ascendente; hemocultura
+      positiva.
+  - id: "3"
+    titulo: Comunicação
+    texto: >
+      Resultado crítico deve ser comunicado ao médico responsável em até 30 minutos, com
+      leitura de confirmação, e registrado no prontuário com horário, valor e nome de quem
+      recebeu.
+  - id: "4"
+    titulo: Escalonamento
+    texto: >
+      Sem confirmação em 30 minutos, escalonar para o plantonista e, em seguida, para a
+      coordenação médica.
+faq:
+  - perguntas:
+      - Quando um exame é considerado pendente?
+      - Qual o prazo para um exame urgente ser realizado?
+    resposta: >
+      Exame não realizado em até 24 horas, ou em 1 hora quando urgente, é pendente e deve
+      ser sinalizado ao médico responsável na passagem de plantão.
+    fontes: ["1"]
+  - perguntas:
+      - Quais valores de exame são críticos?
+      - Potássio de 6,8 é valor crítico?
+    resposta: >
+      Sim. Potássio > 6,5 mEq/L é crítico, assim como K < 2,5, sódio < 120 ou > 160,
+      glicemia < 50 ou > 500, lactato ≥ 4, hemoglobina < 6, plaquetas < 20.000, troponina
+      ascendente acima do percentil 99 e hemocultura positiva.
+    fontes: ["2"]
+  - perguntas:
+      - Em quanto tempo comunicar um resultado crítico?
+      - Como registrar a comunicação de valor crítico?
+    resposta: >
+      Em até 30 minutos ao médico responsável, com leitura de confirmação, registrando
+      horário, valor e quem recebeu.
+    fontes: ["3"]
+  - perguntas:
+      - E se o médico não confirmar o resultado crítico?
+      - Como escalonar um valor crítico sem resposta?
+    resposta: >
+      Sem confirmação em 30 minutos, escalonar para o plantonista e depois para a
+      coordenação médica.
+    fontes: ["4"]

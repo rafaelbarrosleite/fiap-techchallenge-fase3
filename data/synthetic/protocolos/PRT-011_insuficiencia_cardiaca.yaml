@@ -1,0 +1,56 @@
+id: PRT-011
+titulo: Insuficiência cardíaca descompensada
+versao: "1.0"
+area: Cardiologia
+secoes:
+  - id: "1"
+    titulo: Perfil clínico-hemodinâmico
+    texto: >
+      Classificar pela congestão (úmido ou seco) e pela perfusão (quente ou frio). O perfil
+      quente e úmido é o mais frequente. Perfil frio exige avaliação de UTI.
+  - id: "2"
+    titulo: Exames
+    texto: >
+      ECG, radiografia de tórax, BNP ou NT-proBNP, troponina, eletrólitos, função renal e
+      ecocardiograma se não houver exame recente.
+  - id: "3"
+    titulo: Congestão
+    texto: >
+      Diurético de alça intravenoso em dose inicial igual ou superior à dose oral diária
+      habitual, conforme prescrição médica. Monitorar diurese, peso diário, potássio e
+      creatinina.
+  - id: "4"
+    titulo: Medicações de base
+    texto: >
+      Manter, sempre que possível, as medicações que modificam prognóstico. Suspender ou
+      reduzir betabloqueador apenas em choque ou baixo débito.
+faq:
+  - perguntas:
+      - Como classificar o perfil da insuficiência cardíaca descompensada?
+      - O que é perfil quente e úmido?
+    resposta: >
+      Pela congestão (úmido ou seco) e pela perfusão (quente ou frio); quente e úmido é o
+      mais frequente, e perfil frio exige avaliação de UTI.
+    fontes: ["1"]
+  - perguntas:
+      - Quais exames pedir na IC descompensada?
+      - Como investigar insuficiência cardíaca descompensada?
+    resposta: >
+      ECG, radiografia de tórax, BNP ou NT-proBNP, troponina, eletrólitos, função renal e
+      ecocardiograma se não houver exame recente.
+    fontes: ["2"]
+  - perguntas:
+      - Como tratar a congestão na IC descompensada?
+      - Qual a dose de diurético na insuficiência cardíaca descompensada?
+    resposta: >
+      Diurético de alça intravenoso em dose inicial igual ou maior que a dose oral diária
+      habitual, conforme prescrição, com monitorização de diurese, peso, potássio e
+      creatinina.
+    fontes: ["3"]
+  - perguntas:
+      - Devo suspender o betabloqueador na IC descompensada?
+      - O que fazer com as medicações de base na IC descompensada?
+    resposta: >
+      Manter sempre que possível as medicações que modificam prognóstico; reduzir ou
+      suspender o betabloqueador apenas em choque ou baixo débito.
+    fontes: ["4"]

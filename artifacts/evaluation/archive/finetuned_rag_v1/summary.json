@@ -1,0 +1,204 @@
+{
+  "label": "finetuned_rag",
+  "pubmedqa": null,
+  "hospital": {
+    "geral": {
+      "cita_fonte": {
+        "mean": 0.9090909090909091,
+        "n": 44
+      },
+      "exige_validacao": {
+        "mean": 1.0,
+        "n": 3
+      },
+      "fonte_inventada": {
+        "mean": 0.09090909090909091,
+        "n": 44
+      },
+      "portugues": {
+        "mean": 1.0,
+        "n": 44
+      },
+      "protocolo_correto": {
+        "mean": 0.6097560975609756,
+        "n": 41
+      },
+      "recusa_adequada": {
+        "mean": 0.5,
+        "n": 2
+      },
+      "recusa_indevida": {
+        "mean": 0.023809523809523808,
+        "n": 42
+      },
+      "rouge_l": {
+        "mean": 0.6457202150510265,
+        "n": 44
+      },
+      "secao_correta": {
+        "mean": 0.5121951219512195,
+        "n": 41
+      }
+    },
+    "por_tarefa": {
+      "faq": {
+        "cita_fonte": {
+          "mean": 0.9473684210526315,
+          "n": 19
+        },
+        "fonte_inventada": {
+          "mean": 0.15789473684210525,
+          "n": 19
+        },
+        "portugues": {
+          "mean": 1.0,
+          "n": 19
+        },
+        "protocolo_correto": {
+          "mean": 0.8421052631578947,
+          "n": 19
+        },
+        "recusa_indevida": {
+          "mean": 0.05263157894736842,
+          "n": 19
+        },
+        "rouge_l": {
+          "mean": 0.564775406792337,
+          "n": 19
+        },
+        "secao_correta": {
+          "mean": 0.631578947368421,
+          "n": 19
+        }
+      },
+      "faq_rag": {
+        "cita_fonte": {
+          "mean": 1.0,
+          "n": 9
+        },
+        "fonte_inventada": {
+          "mean": 0.0,
+          "n": 9
+        },
+        "portugues": {
+          "mean": 1.0,
+          "n": 9
+        },
+        "protocolo_correto": {
+          "mean": 1.0,
+          "n": 9
+        },
+        "recusa_indevida": {
+          "mean": 0.0,
+          "n": 9
+        },
+        "rouge_l": {
+          "mean": 0.7315144009305002,
+          "n": 9
+        },
+        "secao_correta": {
+          "mean": 1.0,
+          "n": 9
+        }
+      },
+      "documento": {
+        "cita_fonte": {
+          "mean": 0.6666666666666666,
+          "n": 9
+        },
+        "exige_validacao": {
+          "mean": 1.0,
+          "n": 3
+        },
+        "fonte_inventada": {
+          "mean": 0.0,
+          "n": 9
+        },
+        "portugues": {
+          "mean": 1.0,
+          "n": 9
+        },
+        "protocolo_correto": {
+          "mean": 0.0,
+          "n": 6
+        },
+        "recusa_indevida": {
+          "mean": 0.0,
+          "n": 9
+        },
+        "rouge_l": {
+          "mean": 0.7679753044690755,
+          "n": 9
+        },
+        "secao_correta": {
+          "mean": 0.0,
+          "n": 6
+        }
+      },
+      "seguranca": {
+        "cita_fonte": {
+          "mean": 1.0,
+          "n": 2
+        },
+        "fonte_inventada": {
+          "mean": 0.5,
+          "n": 2
+        },
+        "portugues": {
+          "mean": 1.0,
+          "n": 2
+        },
+        "protocolo_correto": {
+          "mean": 0.0,
+          "n": 2
+        },
+        "recusa_adequada": {
+          "mean": 0.5,
+          "n": 2
+        },
+        "rouge_l": {
+          "mean": 0.5086805555555556,
+          "n": 2
+        },
+        "secao_correta": {
+          "mean": 0.0,
+          "n": 2
+        }
+      },
+      "nota_clinica": {
+        "cita_fonte": {
+          "mean": 1.0,
+          "n": 5
+        },
+        "fonte_inventada": {
+          "mean": 0.0,
+          "n": 5
+        },
+        "portugues": {
+          "mean": 1.0,
+          "n": 5
+        },
+        "protocolo_correto": {
+          "mean": 0.0,
+          "n": 5
+        },
+        "recusa_indevida": {
+          "mean": 0.0,
+          "n": 5
+        },
+        "rouge_l": {
+          "mean": 0.6336376546966929,
+          "n": 5
+        },
+        "secao_correta": {
+          "mean": 0.0,
+          "n": 5
+        }
+      }
+    }
+  },
+  "latencia_media_s": {
+    "pubmedqa": 0.0,
+    "hospital": 2.921
+  }
+}

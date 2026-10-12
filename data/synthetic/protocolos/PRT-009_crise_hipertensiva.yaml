@@ -1,0 +1,56 @@
+id: PRT-009
+titulo: Crise hipertensiva
+versao: "1.0"
+area: Emergência / Cardiologia
+secoes:
+  - id: "1"
+    titulo: Classificação
+    texto: >
+      PA ≥ 180/120 mmHg. Emergência hipertensiva quando há lesão aguda de órgão-alvo
+      (encefalopatia, AVC, síndrome coronariana, edema agudo de pulmão, dissecção de aorta,
+      lesão renal aguda, eclâmpsia). Sem lesão aguda: urgência hipertensiva.
+  - id: "2"
+    titulo: Emergência hipertensiva
+    texto: >
+      Internar em unidade com monitorização e usar anti-hipertensivo intravenoso titulável.
+      Reduzir a PA média em no máximo 25% na primeira hora, exceto em dissecção de aorta,
+      em que a meta é mais rápida e rigorosa.
+  - id: "3"
+    titulo: Urgência hipertensiva
+    texto: >
+      Ajustar ou reintroduzir medicação oral e reduzir a PA de forma gradual em 24 a 48
+      horas. Evitar reduções abruptas e o uso de nifedipina sublingual.
+  - id: "4"
+    titulo: Exames de lesão de órgão-alvo
+    texto: >
+      ECG, creatinina, urina tipo 1, troponina se dor torácica, fundo de olho e imagem de
+      crânio se alteração neurológica.
+faq:
+  - perguntas:
+      - Qual a diferença entre urgência e emergência hipertensiva?
+      - Como classificar a crise hipertensiva?
+    resposta: >
+      Com PA ≥ 180/120 mmHg, é emergência se houver lesão aguda de órgão-alvo; sem lesão
+      aguda, é urgência hipertensiva.
+    fontes: ["1"]
+  - perguntas:
+      - Quanto reduzir a pressão na emergência hipertensiva?
+      - Qual a meta de PA na primeira hora da emergência hipertensiva?
+    resposta: >
+      Reduzir a PA média em no máximo 25% na primeira hora com medicação intravenosa
+      titulável, exceto na dissecção de aorta, que tem meta mais rápida.
+    fontes: ["2"]
+  - perguntas:
+      - Posso usar nifedipina sublingual na crise hipertensiva?
+      - Como tratar urgência hipertensiva?
+    resposta: >
+      Não. Na urgência, ajustar medicação oral e reduzir a PA de forma gradual em 24 a 48
+      horas, evitando reduções abruptas e nifedipina sublingual.
+    fontes: ["3"]
+  - perguntas:
+      - Quais exames pedir na crise hipertensiva?
+      - Como investigar lesão de órgão-alvo?
+    resposta: >
+      ECG, creatinina, urina tipo 1, troponina se dor torácica, fundo de olho e imagem de
+      crânio se alteração neurológica.
+    fontes: ["4"]

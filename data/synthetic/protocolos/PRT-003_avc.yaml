@@ -1,0 +1,70 @@
+id: PRT-003
+titulo: Acidente vascular cerebral isquêmico agudo
+versao: "1.2"
+area: Emergência / Neurologia
+secoes:
+  - id: "1"
+    titulo: Reconhecimento e código AVC
+    texto: >
+      Déficit neurológico focal súbito (hemiparesia, afasia, desvio de rima, alteração
+      visual ou ataxia; escala SAMU/BE-FAST positiva) aciona o código AVC.
+      Registrar o horário do último momento em que o paciente foi visto bem, que define
+      a janela terapêutica.
+  - id: "2"
+    titulo: Exames imediatos
+    texto: >
+      Glicemia capilar imediata para excluir hipoglicemia. Tomografia de crânio sem
+      contraste com meta porta-imagem de até 25 minutos. Coletar hemograma, coagulograma
+      e função renal sem atrasar a imagem.
+  - id: "3"
+    titulo: Trombólise
+    texto: >
+      Excluída hemorragia e respeitados os critérios de inclusão e exclusão, avaliar
+      trombólise intravenosa em até 4,5 horas do último momento visto bem, com meta
+      porta-agulha de até 60 minutos. A indicação e a dose são decididas pelo neurologista.
+  - id: "4"
+    titulo: Trombectomia
+    texto: >
+      Suspeita de oclusão de grande vaso deve ser avaliada com angiotomografia para
+      trombectomia mecânica, que pode ser considerada até 24 horas em pacientes
+      selecionados por imagem.
+  - id: "5"
+    titulo: Pressão arterial
+    texto: >
+      Candidato à trombólise: manter PA < 185/110 mmHg antes e < 180/105 mmHg nas 24 horas
+      seguintes. Sem trombólise, tratar apenas se PA > 220/120 mmHg.
+faq:
+  - perguntas:
+      - Qual a janela para trombólise no AVC isquêmico?
+      - Até quantas horas posso trombolisar no AVC?
+    resposta: >
+      A trombólise intravenosa pode ser avaliada em até 4,5 horas do último momento em que
+      o paciente foi visto bem, excluída hemorragia e respeitados os critérios; a decisão
+      é do neurologista.
+    fontes: ["3", "1"]
+  - perguntas:
+      - Qual a meta porta-imagem no código AVC?
+      - Em quanto tempo a tomografia deve ser feita no AVC?
+    resposta: >
+      A tomografia de crânio sem contraste deve ser feita em até 25 minutos da chegada.
+    fontes: ["2"]
+  - perguntas:
+      - Por que medir glicemia no AVC?
+      - Qual o primeiro exame no código AVC?
+    resposta: >
+      A glicemia capilar imediata exclui hipoglicemia, que pode simular déficit focal.
+    fontes: ["2"]
+  - perguntas:
+      - Qual o alvo de pressão para trombolisar?
+      - Como controlar a PA no AVC com trombólise?
+    resposta: >
+      Antes da trombólise, PA < 185/110 mmHg; nas 24 horas seguintes, < 180/105 mmHg. Sem
+      trombólise, tratar apenas se PA > 220/120 mmHg.
+    fontes: ["5"]
+  - perguntas:
+      - Até quando a trombectomia pode ser considerada?
+      - Quem é candidato à trombectomia no AVC?
+    resposta: >
+      Pacientes com suspeita de oclusão de grande vaso, confirmada por angiotomografia,
+      podem ser considerados para trombectomia até 24 horas, selecionados por imagem.
+    fontes: ["4"]

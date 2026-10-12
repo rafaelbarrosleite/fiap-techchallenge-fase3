@@ -1,0 +1,89 @@
+Fetching 6 files:   0%|          | 0/6 [00:00<?, ?it/s]Fetching 6 files: 100%|██████████| 6/6 [00:00<00:00, 2366.77it/s]
+[base] 25/544
+[base] 50/544
+[base] 75/544
+[base] 100/544
+[base] 125/544
+[base] 150/544
+[base] 175/544
+[base] 200/544
+[base] 225/544
+[base] 250/544
+[base] 275/544
+[base] 300/544
+[base] 325/544
+[base] 350/544
+[base] 375/544
+[base] 400/544
+[base] 425/544
+[base] 450/544
+[base] 475/544
+[base] 500/544
+[base] 525/544
+{
+  "pubmedqa_accuracy": 0.73,
+  "hospital": {
+    "cita_fonte": 0.591,
+    "exige_validacao": 0.0,
+    "fonte_correta": 0.205,
+    "fonte_inventada": 0.386,
+    "portugues": 1.0,
+    "recusa_adequada": 1.0,
+    "recusa_indevida": 0.071,
+    "rouge_l": 0.167
+  }
+}
+Fetching 6 files:   0%|          | 0/6 [00:00<?, ?it/s]Fetching 6 files: 100%|██████████| 6/6 [00:00<00:00, 2565.06it/s]
+[finetuned] 25/544
+[finetuned] 50/544
+[finetuned] 75/544
+[finetuned] 100/544
+[finetuned] 125/544
+[finetuned] 150/544
+[finetuned] 175/544
+[finetuned] 200/544
+[finetuned] 225/544
+[finetuned] 250/544
+[finetuned] 275/544
+[finetuned] 300/544
+[finetuned] 325/544
+[finetuned] 350/544
+[finetuned] 375/544
+[finetuned] 400/544
+[finetuned] 425/544
+[finetuned] 450/544
+[finetuned] 475/544
+[finetuned] 500/544
+[finetuned] 525/544
+{
+  "pubmedqa_accuracy": 0.756,
+  "hospital": {
+    "cita_fonte": 0.932,
+    "exige_validacao": 1.0,
+    "fonte_correta": 0.568,
+    "fonte_inventada": 0.0,
+    "portugues": 1.0,
+    "recusa_adequada": 1.0,
+    "recusa_indevida": 0.048,
+    "rouge_l": 0.571
+  }
+}
+| Métrica | base | finetuned |
+|---|---:|---:|
+| PubMedQA — acurácia | 73.0% | 75.6% |
+| PubMedQA — F1 macro | 52.0% | 52.8% |
+| PubMedQA — resposta inválida (↓) | 0.0% | 0.0% |
+| PubMedQA — recall 'yes' | 87.3% | 86.6% |
+| PubMedQA — recall 'no' | 72.8% | 82.2% |
+| PubMedQA — recall 'maybe' | 1.8% | 0.0% |
+| Hospital — Cita fonte | 59.1% | 93.2% |
+| Hospital — Fonte correta | 20.5% | 56.8% |
+| Hospital — Fonte inventada (↓) | 38.6% | 0.0% |
+| Hospital — Recusa indevida (↓) | 7.1% | 4.8% |
+| Hospital — Recusa adequada (segurança) | 100.0% | 100.0% |
+| Hospital — Receita/solicitação exige validação | 0.0% | 100.0% |
+| Hospital — Responde em português | 100.0% | 100.0% |
+| Hospital — ROUGE-L vs referência | 0.167 | 0.571 |
+| Latência média PubMedQA (s) | 1.24 | 1.41 |
+| Latência média hospital (s) | 5.08 | 2.70 |
+

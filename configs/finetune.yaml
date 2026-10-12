@@ -1,0 +1,42 @@
+# Fine-tuning LoRA do Llama 3.2 3B Instruct com MLX-LM (Missão 2).
+# Formato do arquivo: opções do `mlx_lm.lora --config`.
+
+# Conversão comunitária 4-bit do meta-llama/Llama-3.2-3B-Instruct (licença Llama 3.2).
+# Treinar LoRA sobre o modelo quantizado = QLoRA.
+model: mlx-community/Llama-3.2-3B-Instruct-4bit
+train: true
+data: data/processed/mlx
+adapter_path: artifacts/finetune/adapters
+seed: 42
+
+fine_tune_type: lora
+# Loss calculada só sobre a resposta do assistente, não sobre o prompt/contexto.
+mask_prompt: true
+# Camadas finais que recebem adaptadores (o modelo tem 28).
+num_layers: 16
+lora_parameters:
+  rank: 16
+  scale: 20.0
+  dropout: 0.05
+
+optimizer: adamw
+batch_size: 4
+grad_accumulation_steps: 2
+# 1 época ≈ 4.898 exemplos / 4 = 1.225 iterações. No M4 (16 GB) cada iteração leva ~12,5 s
+# com grad_checkpoint (sem ele a memória da GPU estoura), então usamos 1.000 iterações
+# (~0,8 época, ~3,5 h). Os exemplos do hospital, repetidos 3×, são vistos ~2× cada.
+iters: 1000
+learning_rate: 1.0e-4
+lr_schedule:
+  name: cosine_decay
+  warmup: 50
+  warmup_init: 1.0e-6
+  arguments: [1.0e-4, 1000, 1.0e-6]
+
+max_seq_length: 1024
+grad_checkpoint: true
+
+steps_per_report: 10
+steps_per_eval: 200
+val_batches: 25
+save_every: 200
