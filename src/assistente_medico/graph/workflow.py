@@ -8,7 +8,8 @@ Dois modos sobre o mesmo grafo:
 
     guardrail_entrada ─┬─(bloqueado)──────────────────────────────────────────────► responder
                        └► carregar_paciente ► verificar_pendencias ► emitir_alertas
-                            ► buscar_protocolos ► gerar_resposta ► guardrail_saida
+                            ─┬─(pergunta sobre pendências/críticos do paciente)► responder_prontuario ► responder
+                             └► buscar_protocolos ► gerar_resposta ► guardrail_saida
                             ─┬─(conduta/prescrição)► criar_rascunho ► validacao_humana ► responder
                              └──────────────────────────────────────────────────────► responder
 
@@ -44,7 +45,7 @@ from assistente_medico.llm.assistant_chain import build_user_message, format_pat
 from assistente_medico.llm.chat_models import get_chat_model
 from assistente_medico.llm.prompts import HOSPITAL_SYSTEM_PROMPT, PROMPT_VERSION
 from assistente_medico.rag.retriever import get_retriever
-from assistente_medico.safety.guardrails import check_input, check_output
+from assistente_medico.safety.guardrails import RECORD_CRITICAL, RECORD_PENDING, check_input, check_output
 
 CASE_QUESTION = ("Avalie o caso segundo o protocolo aberto: quais condutas do protocolo estão indicadas agora, "
                  "considerando os exames pendentes e os sinais vitais?")
@@ -181,10 +182,36 @@ def build_graph(llm: BaseChatModel | None = None, checkpointer: BaseCheckpointSa
     def guardrail_saida(state: CaseState) -> dict:
         retrieved = [d["metadata"]["citation"] for d in state.get("docs", [])]
         excerpts = {d["metadata"]["citation"]: d["texto"] for d in state.get("docs", [])}
-        out = check_output(state["resposta_modelo"], retrieved, excerpts=excerpts)
+        context = f"{state['pergunta']}\n{state.get('contexto_paciente') or ''}"
+        out = check_output(state["resposta_modelo"], retrieved, excerpts=excerpts, context=context)
         AuditLogger(trace_id=state["trace_id"]).log("guardrail_saida", acao=out.acao, problemas=out.problemas,
                                                     fontes_recuperadas=retrieved, fontes_validas=out.fontes_validas)
         return {"saida": asdict(out)}
+
+    @_audited("responder_prontuario")
+    def responder_prontuario(state: CaseState) -> dict:
+        """Fatos do prontuário vêm das regras do PRT-012, não da geração de texto."""
+        question = state["pergunta"]
+        want_pending = bool(RECORD_PENDING.search(question))
+        want_critical = bool(RECORD_CRITICAL.search(question))
+        lines = []
+        if want_critical:
+            critical = state.get("criticos", [])
+            lines.append("Resultados críticos (PRT-012 §2):" if critical else
+                         "Nenhum resultado em faixa crítica no prontuário (PRT-012 §2).")
+            lines += [f"- {c['descricao']} — comunicar ao médico responsável em até 30 min com leitura de "
+                      f"confirmação (PRT-012 §3)" for c in critical]
+        if want_pending:
+            pending = state.get("pendentes", [])
+            lines.append("Exames pendentes (PRT-012 §1):" if pending else
+                         "Nenhum exame pendente além do prazo (PRT-012 §1).")
+            lines += [f"- {p['descricao']}" for p in pending]
+        lines += ["", "Fonte: PRT-012 — Exames pendentes e comunicação de resultados críticos (regras aplicadas "
+                      "ao prontuário, sem geração de texto)."]
+        text = "\n".join(lines)
+        AuditLogger(trace_id=state["trace_id"]).log("resposta_prontuario", paciente_id=state.get("paciente_id"),
+                                                    resposta=text)
+        return {"saida": {"acao": "aprovada", "texto": text, "problemas": [], "fontes_validas": ["PRT-012 §1", "PRT-012 §2"]}}
 
     @_audited("criar_rascunho")
     def criar_rascunho(state: CaseState) -> dict:
@@ -232,6 +259,10 @@ def build_graph(llm: BaseChatModel | None = None, checkpointer: BaseCheckpointSa
     def after_input(state: CaseState) -> str:
         return "responder" if state["entrada"]["bloqueado"] else "carregar_paciente"
 
+    def after_alerts(state: CaseState) -> str:
+        record_query = state["entrada"]["intencao"] == "consulta_prontuario" and state.get("paciente_id")
+        return "responder_prontuario" if record_query and state["modo"] == "pergunta" else "buscar_protocolos"
+
     def after_output(state: CaseState) -> str:
         needs_validation = state["modo"] == "caso" or state["entrada"]["intencao"] == "prescricao"
         return "criar_rascunho" if needs_validation and state["saida"]["acao"] != "bloqueada" else "responder"
@@ -240,14 +271,16 @@ def build_graph(llm: BaseChatModel | None = None, checkpointer: BaseCheckpointSa
     for name, fn in [("guardrail_entrada", guardrail_entrada), ("carregar_paciente", carregar_paciente),
                      ("verificar_pendencias", verificar_pendencias), ("emitir_alertas", emitir_alertas),
                      ("buscar_protocolos", buscar_protocolos), ("gerar_resposta", gerar_resposta),
-                     ("guardrail_saida", guardrail_saida), ("criar_rascunho", criar_rascunho),
+                     ("guardrail_saida", guardrail_saida), ("responder_prontuario", responder_prontuario),
+                     ("criar_rascunho", criar_rascunho),
                      ("validacao_humana", validacao_humana), ("responder", responder)]:
         graph.add_node(name, fn)
     graph.add_edge(START, "guardrail_entrada")
     graph.add_conditional_edges("guardrail_entrada", after_input, ["responder", "carregar_paciente"])
     graph.add_edge("carregar_paciente", "verificar_pendencias")
     graph.add_edge("verificar_pendencias", "emitir_alertas")
-    graph.add_edge("emitir_alertas", "buscar_protocolos")
+    graph.add_conditional_edges("emitir_alertas", after_alerts, ["responder_prontuario", "buscar_protocolos"])
+    graph.add_edge("responder_prontuario", "responder")
     graph.add_edge("buscar_protocolos", "gerar_resposta")
     graph.add_edge("gerar_resposta", "guardrail_saida")
     graph.add_conditional_edges("guardrail_saida", after_output, ["criar_rascunho", "responder"])

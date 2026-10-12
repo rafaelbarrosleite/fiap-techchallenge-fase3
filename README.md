@@ -19,7 +19,7 @@ Projeto da Pós Tech FIAP (IA para Devs, 8IADT). Assistente virtual médico de u
 | Protocolo / seção citados corretos | 78% / 61% | 78% / 61% |
 | PubMedQA, acurácia (500 itens, sem RAG) | 73,0% | 75,6% (McNemar p = 0,07) |
 
-Bateria de segurança do fluxo completo (pedidos fora do treino): **20/21 pedidos adversariais contidos** na versão original das regras e 21/21 após a correção, **0/15 bloqueios indevidos**. O treino ensinou principalmente o *comportamento* do hospital (citar, recusar, pedir validação). O conhecimento vem dos protocolos recuperados, e a segurança é garantida pelos guardrails do grafo. A análise completa está no relatório.
+Bateria de segurança do fluxo completo (pedidos fora do treino): **20/21 pedidos adversariais contidos** na versão original das regras e 21/21 após a correção, **0/15 bloqueios indevidos** na entrada. O guardrail de saída também confere a **aderência** da resposta ao texto citado; nas respostas legítimas, das 4 que ele descarta, 3 tinham conteúdo errado. O treino ensinou principalmente o *comportamento* do hospital (citar, recusar, pedir validação). O conhecimento vem dos protocolos recuperados, e a segurança é garantida pelos guardrails do grafo. A análise completa está no relatório.
 
 ## Arquitetura
 
@@ -52,7 +52,7 @@ Requisitos:
 git clone git@github.com:rafaelbarrosleite/fiap-techchallenge-fase3.git
 cd fiap-techchallenge-fase3
 uv sync
-uv run pytest            # 85 testes
+uv run pytest            # 92 testes
 ```
 
 ### Adaptador treinado
@@ -131,7 +131,8 @@ O botão "Reiniciar prontuário de demonstração" recria o banco.
 
 - **Guardrail de entrada:** recusa, sem chamar o modelo, pedidos de prescrição sem validação, para ignorar regras, de dose letal, de dados pessoais, para ocultar registros e de orientação direta a pacientes.
 - **Validação humana:** toda conduta ou prescrição vira rascunho `PENDENTE_VALIDACAO`, e o grafo para com `interrupt()` até um médico identificado aprovar ou rejeitar. O estado fica salvo em `data/checkpoints.sqlite`.
-- **Guardrail de saída:** só aceita citações existentes e recuperadas. Com citação divergente, descarta a resposta gerada e mostra os trechos do protocolo; também remove dados pessoais.
+- **Guardrail de saída:** só aceita citações existentes e recuperadas e confere a aderência do conteúdo ao texto citado (vocabulário e números). Se algo diverge, descarta a resposta gerada e mostra os trechos do protocolo. Também remove dados pessoais.
+- **Fatos do prontuário sem LLM:** perguntas sobre exames pendentes e resultados críticos de um paciente são respondidas pelas regras do PRT-012, sem geração de texto.
 - **Auditoria:** `logs/audit.jsonl` registra cada nó, decisão, resposta do modelo e validação humana, com `trace_id`. O logger recusa campos de identificação.
 
 ## Estrutura
@@ -151,10 +152,10 @@ src/assistente_medico/
   audit/                 log de auditoria
   evaluation/            métricas, avaliação base × ajustado, bateria de segurança
   app/                   CLI e Streamlit
-tests/                   85 testes
+tests/                   92 testes
 artifacts/               relatório de dados, treino, avaliações
 ```
 
 ## Limitações
 
-Dados sintéticos sem revisão médica, testes pequenos (44 itens do hospital, 36 da bateria), classe "maybe" não aprendida, busca léxica (BM25) e repetições ocasionais do modelo de 3B. Os detalhes estão no relatório, §8.
+Dados sintéticos sem revisão médica, testes pequenos (44 itens do hospital, 36 da bateria), classe "maybe" não aprendida, busca léxica (BM25), guardrail lexical que não detecta erro de raciocínio clínico (por isso a validação humana é obrigatória) e repetições ocasionais do modelo de 3B. Os detalhes estão no relatório, §8.

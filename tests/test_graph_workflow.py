@@ -92,3 +92,20 @@ def test_modo_invalido():
     graph = build_graph(FakeClinicalChatModel())
     with pytest.raises(ValueError):
         start(graph, "x", "caso")
+
+
+def test_pergunta_sobre_prontuario_e_respondida_pelas_regras_sem_o_modelo(env):
+    graph, tmp_path = env
+    result = start(graph, "t-pront", "pergunta", "Este paciente tem algum resultado crítico?", paciente_id="P003")
+    assert "responder_prontuario" in result["trilha"] and "gerar_resposta" not in result["trilha"]
+    assert "Potássio sérico = 6.8 mEq/L" in result["resposta_final"] and "PRT-012 §3" in result["resposta_final"]
+    assert not any(r["event"] == "llm_resposta" for r in _audit(tmp_path, "t-pront"))
+
+    result = start(graph, "t-pend", "pergunta", "Quais exames estão pendentes para este paciente?", paciente_id="P007")
+    assert "Nenhum exame pendente" in result["resposta_final"]
+
+
+def test_pergunta_sobre_valor_critico_sem_paciente_usa_os_protocolos(env):
+    graph, _ = env
+    result = start(graph, "t-geral", "pergunta", "Qual o valor crítico de potássio?")
+    assert "buscar_protocolos" in result["trilha"] and "responder_prontuario" not in result["trilha"]

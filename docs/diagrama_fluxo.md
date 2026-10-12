@@ -11,9 +11,11 @@ flowchart TD
     GE -- permitido --> CP["carregar_paciente<br/>tools: buscar_paciente,<br/>listar_exames_pendentes,<br/>listar_resultados_criticos"]
     CP --> VP["verificar_pendencias<br/>regras PRT-012 §1 e §2"]
     VP --> AL["emitir_alertas<br/>(modo caso; sem duplicar)"]
-    AL --> BP["buscar_protocolos<br/>BM25 por seção → citações"]
+    AL -- "pergunta sobre pendências /<br/>resultados críticos do paciente" --> RP["responder_prontuario<br/>regras PRT-012, sem LLM"]
+    RP --> RESP
+    AL -- demais --> BP["buscar_protocolos<br/>BM25 por seção → citações"]
     BP --> GR["gerar_resposta<br/>Llama 3.2 3B + LoRA (MLX)"]
-    GR --> GS{{"guardrail_saida<br/>citação ⊆ trechos recuperados?<br/>fonte existe? PII? aviso?"}}
+    GR --> GS{{"guardrail_saida<br/>citação ⊆ trechos recuperados?<br/>conteúdo aderente ao trecho?<br/>números com suporte? PII?"}}
     GS -- "pergunta informativa" --> RESP
     GS -- "modo caso ou<br/>pedido de prescrição" --> RA["criar_rascunho<br/>status PENDENTE_VALIDACAO"]
     RA --> HV[["validacao_humana<br/>interrupt() — aguarda médico<br/>aprovar/rejeitar com ID"]]
@@ -26,7 +28,7 @@ flowchart TD
     AL -.-> DB
     RA -.-> DB
     HV -.-> DB
-    GE & CP & VP & AL & BP & GR & GS & RA & HV & RESP -.-> LOG
+    GE & CP & VP & AL & RP & BP & GR & GS & RA & HV & RESP -.-> LOG
 ```
 
 ## Grafo compilado (gerado pelo LangGraph)
@@ -43,6 +45,7 @@ graph TD;
 	buscar_protocolos(buscar_protocolos)
 	gerar_resposta(gerar_resposta)
 	guardrail_saida(guardrail_saida)
+	responder_prontuario(responder_prontuario)
 	criar_rascunho(criar_rascunho)
 	validacao_humana(validacao_humana)
 	responder(responder)
@@ -51,12 +54,14 @@ graph TD;
 	buscar_protocolos --> gerar_resposta;
 	carregar_paciente --> verificar_pendencias;
 	criar_rascunho --> validacao_humana;
-	emitir_alertas --> buscar_protocolos;
+	emitir_alertas -.-> buscar_protocolos;
+	emitir_alertas -.-> responder_prontuario;
 	gerar_resposta --> guardrail_saida;
 	guardrail_entrada -.-> carregar_paciente;
 	guardrail_entrada -.-> responder;
 	guardrail_saida -.-> criar_rascunho;
 	guardrail_saida -.-> responder;
+	responder_prontuario --> responder;
 	validacao_humana --> responder;
 	verificar_pendencias --> emitir_alertas;
 	responder --> __end__;
@@ -72,5 +77,7 @@ graph TD;
 | Escolha de ferramentas | Orquestração fixa no grafo, não pela LLM | O modelo de 3B não é confiável para decidir sozinho quais ferramentas chamar; o fluxo determinístico é auditável |
 | Validação humana | `interrupt()` + checkpointer | O grafo para, persiste o estado e só continua com a decisão de um médico identificado |
 | Citações | Guardrail compara a citação do modelo com os trechos recuperados | A avaliação (M3) mostrou que o modelo ajustado erra a seção citada; a lista de fontes exibida vem sempre do sistema |
+| Aderência | Guardrail compara o conteúdo da resposta com o texto das seções citadas (vocabulário ≥ 0,5 e números presentes nos trechos ou no prontuário) | Respostas com citação válida e conteúdo de outro protocolo passavam; agora são descartadas e substituídas pelos trechos |
+| Fatos do prontuário | Pendências e resultados críticos do paciente são respondidos por `responder_prontuario`, sem LLM | O modelo ignorou um potássio crítico presente no contexto; fato estruturado não deve depender de geração de texto |
 | Alertas | Gerados por regra (PRT-012), não pela LLM | Pendências e valores críticos são fatos do prontuário; não dependem de geração de texto |
 | Auditoria | `node_start`/`node_end` de cada nó + eventos de decisão, com `trace_id` | Reconstrói o caminho completo de cada caso. Ao retomar após o `interrupt`, o nó de validação é reexecutado, por isso aparece com dois `node_start` |

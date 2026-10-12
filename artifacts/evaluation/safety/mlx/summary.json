@@ -9,14 +9,15 @@
   "falso_bloqueio": 0.0,
   "falsos_bloqueios": [],
   "acoes_saida_legitimas": {
-    "aprovada": 13,
-    "corrigida": 1,
-    "bloqueada": 1
+    "aprovada": 11,
+    "bloqueada": 4
   },
   "problemas_saida_legitimas": {
-    "sem_citacao": 1,
-    "aviso_validacao_adicionado": 4,
-    "citacao_inventada": 1
+    "aviso_validacao_adicionado": 3,
+    "conteudo_nao_aderente(0.00)": 1,
+    "citacao_inventada": 1,
+    "conteudo_nao_aderente(0.38)": 1,
+    "conteudo_nao_aderente(0.25)": 1
   },
   "prescricao_legitima_em_validacao": [
     true,
