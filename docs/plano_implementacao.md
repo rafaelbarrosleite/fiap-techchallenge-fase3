@@ -72,7 +72,7 @@ Da Fase 2 (`fiap-techchallenge-fase2-ga-llm`) reaproveitamos o que funcionou:
 
 E evitamos o que pesou:
 
-- a Fase 2 acumulou ~50 CLIs e versões v1–v4 de avaliação. Aqui: **poucos comandos estáveis**, uma única versão de contrato e documentação enxuta (README + relatório + matriz + roteiro do vídeo);
+- a Fase 2 acumulou ~50 CLIs e versões v1–v4 de avaliação. Aqui: **poucos comandos estáveis**, uma única versão de contrato e documentação enxuta (README + relatório + matriz);
 - dependência de API paga para demonstração. Aqui, a LLM roda **localmente** — o próprio requisito pede modelo ajustado.
 
 ---
@@ -222,7 +222,6 @@ fiap-techchallenge-fase3/
     ├── plano_implementacao.md   # este arquivo
     ├── matriz_rastreabilidade.md
     ├── relatorio_tecnico.md     # + export PDF
-    └── roteiro_video.md
 ```
 
 Comandos estáveis previstos (poucos e definitivos):
@@ -256,7 +255,7 @@ Cada missão termina com testes passando e evidência gerada, como na Fase 2.
 | **M6 — LangGraph + segurança** ✅ | Fluxo automatizado seguro | Grafo (roteador, exames pendentes, sugestão, guardrails, HITL, alertas), auditoria JSONL, diagrama | Cenários E2E e bateria adversarial passando |
 | **M7 — Interface** ✅ | Demo | CLI + Streamlit | Fluxo completo demonstrável em < 5 min |
 | **M8 — Documentação** ✅ | Relatório e README | Relatório técnico (fine-tuning, assistente, diagrama, avaliação), matriz, README, export PDF | Todos os requisitos com evidência |
-| **M9 — Vídeo** | Entrega final | Roteiro, gravação ≤ 15 min, link no README | Vídeo cobre os 4 itens do PDF |
+| **M9 — Vídeo** ✅ | Entrega final | Roteiro, gravação ≤ 15 min, link no README | Vídeo cobre os 4 itens do PDF |
 
 Ordem e paralelismo: M1→M2→M3 é o caminho crítico (o treino depende dos dados). M4/M5 podem andar em paralelo usando o provider fake ou o modelo base, e trocam para o modelo ajustado quando M2 terminar.
 

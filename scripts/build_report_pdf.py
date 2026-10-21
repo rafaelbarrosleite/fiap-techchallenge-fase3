@@ -1,6 +1,9 @@
 """Gera docs/relatorio_tecnico.pdf a partir do Markdown (diagramas Mermaid renderizados).
 
     uv run python scripts/build_report_pdf.py
+    uv run python scripts/build_report_pdf.py --capa entrega/capa.md --saida entrega/entrega.pdf
+
+Com ``--capa``, o PDF começa por esse Markdown e segue com o relatório em nova página.
 
 Markdown → HTML (python-markdown) → PDF pelo Google Chrome headless. O Mermaid é carregado
 do jsDelivr no momento da impressão, então é preciso estar com internet.
@@ -8,6 +11,7 @@ do jsDelivr no momento da impressão, então é preciso estar com internet.
 
 from __future__ import annotations
 
+import argparse
 import html
 import re
 import subprocess
@@ -41,8 +45,10 @@ img { max-width: 100%; }
 _MERMAID = re.compile(r"```mermaid\n(.*?)```", re.DOTALL)
 
 
-def build() -> Path:
+def build(cover: Path | None = None, out: Path = PDF_OUT) -> Path:
     text = SOURCE.read_text(encoding="utf-8")
+    if cover is not None:
+        text = cover.read_text(encoding="utf-8") + '\n\n<div style="page-break-after: always"></div>\n\n' + text
     blocks: list[str] = []
 
     def stash(match: re.Match[str]) -> str:
@@ -62,12 +68,16 @@ mermaid.initialize({{ startOnLoad: true, theme: "neutral", flowchart: {{ htmlLab
 </script></body></html>"""
     HTML_OUT.write_text(page, encoding="utf-8")
     subprocess.run([CHROME, "--headless=new", "--disable-gpu", "--no-pdf-header-footer", "--virtual-time-budget=15000",
-                    f"--print-to-pdf={PDF_OUT}", HTML_OUT.as_uri()], check=True, capture_output=True)
+                    f"--print-to-pdf={out.resolve()}", HTML_OUT.as_uri()], check=True, capture_output=True)
     HTML_OUT.unlink()
-    return PDF_OUT
+    return out
 
 
 if __name__ == "__main__":
-    out = build()
+    parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    parser.add_argument("--capa", type=Path, help="Markdown da capa, inserido antes do relatório")
+    parser.add_argument("--saida", type=Path, default=PDF_OUT)
+    args = parser.parse_args()
+    out = build(args.capa, args.saida)
     print(f"PDF gerado: {out} ({out.stat().st_size / 1024:.0f} KB)")
     sys.exit(0)

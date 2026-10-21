@@ -7,7 +7,8 @@ Projeto da Pós Tech FIAP (IA para Devs, 8IADT). Assistente virtual médico de u
 - 📄 **Relatório técnico:** [`docs/relatorio_tecnico.md`](docs/relatorio_tecnico.md) (também em PDF: [`docs/relatorio_tecnico.pdf`](docs/relatorio_tecnico.pdf))
 - 🧭 **Diagrama do fluxo:** [`docs/diagrama_fluxo.md`](docs/diagrama_fluxo.md)
 - ✅ **Requisitos × evidências:** [`docs/matriz_rastreabilidade.md`](docs/matriz_rastreabilidade.md)
-- 🎬 **Vídeo:** _link a incluir_
+- 🎬 **Vídeo de demonstração (14 min):** https://youtu.be/xsPN2e6XAD8
+- 📦 **Modelo treinado (adaptador LoRA):** [Releases](https://github.com/rafaelbarrosleite/fiap-techchallenge-fase3/releases/latest)
 
 ## Resultados em uma tabela
 
@@ -57,10 +58,10 @@ uv run pytest            # 92 testes
 
 ### Adaptador treinado
 
-Para não retreinar (cerca de 3h40), baixe o adaptador da Release `v0.7.0`:
+Para não retreinar (cerca de 3h40), baixe o adaptador da Release `v1.0.0`:
 
 ```bash
-gh release download v0.7.0 -p "llama32-3b-lora-hospital.tar.gz"
+gh release download v1.0.0 -p "llama32-3b-lora-hospital.tar.gz"
 mkdir -p artifacts/finetune/official && tar -xzf llama32-3b-lora-hospital.tar.gz -C artifacts/finetune/official
 ```
 
@@ -140,7 +141,7 @@ O botão "Reiniciar prontuário de demonstração" recria o banco.
 ```text
 configs/                 data.yaml, finetune.yaml
 data/synthetic/          protocolos, modelos de documentos, segurança, bateria de avaliação
-docs/                    relatório, diagrama, matriz, plano, roteiro do vídeo, PDF do enunciado
+docs/                    relatório, diagrama, matriz, plano, PDF do enunciado
 src/assistente_medico/
   data/                  PubMedQA, corpus do hospital, anonimização, curadoria, splits
   finetune/              treino MLX com métricas e manifesto

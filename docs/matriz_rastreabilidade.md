@@ -6,7 +6,7 @@ Fonte: [`references/8IADT - Fase 3 - Tech challenge.pdf`](<references/8IADT - Fa
 
 | ID | Requisito (PDF) | Implementação | Teste | Evidência | Status |
 |---|---|---|---|---|---|
-| R1 | Fine-tuning de LLM (LLaMA, Falcon ou outra) | QLoRA do Llama 3.2 3B Instruct com MLX-LM — `finetune/train.py`, `configs/finetune.yaml` | `test_finetune_train.py` | `artifacts/finetune/official/` (manifesto, métricas, curva); adaptador na Release v0.7.0 | ✅ |
+| R1 | Fine-tuning de LLM (LLaMA, Falcon ou outra) | QLoRA do Llama 3.2 3B Instruct com MLX-LM — `finetune/train.py`, `configs/finetune.yaml` | `test_finetune_train.py` | `artifacts/finetune/official/` (manifesto, métricas, curva); adaptador na Release v1.0.0 | ✅ |
 | R1.1 | … com protocolos médicos do hospital | 13 protocolos sintéticos com seções citáveis — `data/synthetic/protocolos/` | `test_data_pipeline.py` (validação de fontes) | Exemplos `faq`/`faq_rag` no treino | ✅ |
 | R1.2 | … com perguntas frequentes de médicos | FAQ por protocolo (2–3 variações) + PubMedQA | `test_data_pipeline.py` | `data_report.json` | ✅ |
 | R1.3 | … com modelos de laudos, receitas e procedimentos | `data/synthetic/modelos_documentos.yaml` | `test_toda_receita_gerada_e_rascunho_pendente_de_validacao` | Exemplos `documento` | ✅ |
@@ -32,4 +32,4 @@ Fonte: [`references/8IADT - Fase 3 - Tech challenge.pdf`](<references/8IADT - Fa
 | E6 | Relatório: descrição do assistente | [`relatorio_tecnico.md`](relatorio_tecnico.md) §5 | ✅ |
 | E7 | Relatório: diagrama do fluxo LangChain | [`diagrama_fluxo.md`](diagrama_fluxo.md) e relatório §2 e §5.2 | ✅ |
 | E8 | Relatório: avaliação e análise | [`relatorio_tecnico.md`](relatorio_tecnico.md) §6–8 | ✅ |
-| E9 | Vídeo de até 15 min (treino, fluxo automatizado, pergunta contextualizada, logs e validação) | Roteiro em [`roteiro_video.md`](roteiro_video.md); link no README | ⏳ Missão 9 |
+| E9 | Vídeo de até 15 min (treino, fluxo automatizado, pergunta contextualizada, logs e validação) | https://youtu.be/xsPN2e6XAD8 | ✅ |

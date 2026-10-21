@@ -5,7 +5,9 @@
 
 **Repositório:** https://github.com/rafaelbarrosleite/fiap-techchallenge-fase3
 
-**Adaptador treinado:** Release `v0.7.0` do repositório
+**Vídeo de demonstração:** https://youtu.be/xsPN2e6XAD8
+
+**Adaptador treinado:** Releases do repositório (https://github.com/rafaelbarrosleite/fiap-techchallenge-fase3/releases/latest)
 
 > Projeto acadêmico. Os protocolos, pacientes e documentos do "hospital" são fictícios. Nada aqui é ferramenta clínica, e toda conduta exige validação do médico responsável.
 
@@ -419,7 +421,7 @@ O guardrail barra 8 de 10 respostas com seção errada e algumas com seção "ce
 uv sync
 uv run pytest                                   # 92 testes
 uv run prepare-data                             # dados (PubMedQA + hospital)
-uv run finetune --run-name official             # ~3h40 no M4 16 GB (ou baixe o adaptador da Release v0.7.0)
+uv run finetune --run-name official             # ~3h40 no M4 16 GB (ou baixe o adaptador da Release v1.0.0)
 uv run evaluate-model --label base
 uv run evaluate-model --label finetuned --adapter artifacts/finetune/official/adapters
 uv run evaluate-model --label finetuned_rag --rag --adapter artifacts/finetune/official/adapters
