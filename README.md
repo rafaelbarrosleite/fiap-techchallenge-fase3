@@ -1,5 +1,7 @@
 # Tech Challenge — Fase 3 — Assistente Médico com LLaMA, LangChain e LangGraph
 
+> **English summary.** Academic project for the FIAP postgraduate programme in AI for Developers (phase 3). A medical assistant for a fictional hospital, built on **Llama 3.2 3B fine-tuned with QLoRA** (PubMedQA plus synthetic hospital data). It reads structured patient records through LangChain and runs decision flows in LangGraph: it checks pending exams, raises alerts, suggests conduct citing the hospital protocols, and **stops until a doctor validates**. Compared with the original model on the same RAG setup, fine-tuning cut invented sources from 20.5% to 2.3% and undue refusals from 4.8% to 2.4%, and prescriptions are always produced as drafts pending validation. Academic use only: protocols, patients and documents are fictional. Demo video (14 min, in Portuguese): https://youtu.be/xsPN2e6XAD8. The rest of this README is in Portuguese.
+
 Projeto da Pós Tech FIAP (IA para Devs, 8IADT). Assistente virtual médico de um hospital fictício. Ele usa um **Llama 3.2 3B ajustado com QLoRA** (PubMedQA + dados sintéticos do hospital), consulta **prontuários estruturados** via LangChain e coordena **fluxos de decisão com LangGraph**. O fluxo verifica exames pendentes, emite alertas, sugere condutas citando os protocolos e **para até um médico validar**.
 
 > **Uso exclusivamente acadêmico.** Protocolos, pacientes e documentos são fictícios. Não é ferramenta clínica, e toda conduta exige validação do médico responsável.
